@@ -1,2 +1,11 @@
 <!--pages/collection/index.wxml-->
-<text>pages/collection/index.wxml</text>
+<view class="chooseMath">
+    <view>{{formula.name}}</view>
+    <!-- 答案 -->
+    <view class="chooseWrap">
+        <view class="chooseItem">A dfsfsww</view>
+        <view class="chooseItem">A dfsfsww</view>
+        <view class="chooseItem">A dfsfsww</view>
+        <view class="chooseItem">A dfsfsww</view>
+    </view>
+</view>

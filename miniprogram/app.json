@@ -9,7 +9,7 @@
         "backgroundColor": "#e6eef5",
         "backgroundColorContent": "#e6eef5",
         "backgroundTextStyle": "light",
-        "navigationBarTitleText": "测试云开发",
+        "navigationBarTitleText": "自律打卡",
         "navigationBarBackgroundColor": "#5702a8"
     },
     "tabBar": {
@@ -28,12 +28,6 @@
                 "text": "刷公式",
                 "iconPath": "/images/error.png",
                 "selectedIconPath": "/images/errorSelected.png"
-            },
-            {
-                "pagePath": "pages/collection/index",
-                "text": "收藏",
-                "iconPath": "/images/collection.png",
-                "selectedIconPath": "/images/collectionSelected.png"
             },
             {
                 "pagePath": "pages/need/need",

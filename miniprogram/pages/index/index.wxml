@@ -13,31 +13,31 @@
   <view class="container">
     <header userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}"></header>
     <view class="content-wrap">
-      <view class="remain-day">距离2025考研还剩300天</view>
+      <view class="remain-day">距离2025考研还剩{{remainDays}}天</view>
       <view class="cotent-text">
-        <!-- <view class="header-banner-left">
-          坚持天数
-          <view class="persist-wrap"><text class="persist">1</text>天</view>
-          <view>
-          <image class="paiming" src="cloud://cloud1-2gagxf5o5b36fb56.636c-cloud1-2gagxf5o5b36fb56-1324277862/奖杯.png"></image>
-            排名：23
+        <view class="header-banner-left">
+          自由形式
+           <view>
+            <image class="freeimg"  mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/自由动态.png" ></image>
           </view>
-        </view>     -->
-        <!-- <view class="header-banner-right">
-          当前进度
-            <view class="process">高中基础回顾</view>
+        </view>    
+        <view class="header-banner-right">
+          选择形式
           <view>
-          <image class="paiming" src="cloud://cloud1-2gagxf5o5b36fb56.636c-cloud1-2gagxf5o5b36fb56-1324277862/奖杯.png"></image>
-            排名：23
+            <image class="chooseimg"  mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/选择.png" ></image>
           </view>
-        </view> -->
+        </view>
+      </view>
+      <view class="rank">
+        <image class="paiming" src="../../images/奖杯.png"></image>
+          排名：23
       </view>
     </view>
     <view class="content-main">
       <view class="check-in">
         <image class="card-left-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-left.png" ></image>
          <view class="content-left">
-          <view class="card-title">数二公式刷题</view>
+          <view class="card-title">高等数学篇</view>
           <view>
           反复疯狂记忆，一个月搞定高数公式
           </view>
@@ -46,11 +46,21 @@
       <view class="recite">
         <image class="card-right-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-right.png" ></image>
         <view class="content-right">
-          <view class="card-title">背诵卡片</view>
+          <view class="card-title">高中基础篇</view>
           <view>每天过15分钟， 轻松掌握</view>
         </view>
       </view>
+      
     </view>
+     <view class="content-main">
+     <view class="recite">
+        <image class="card-right-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-bottom.png" ></image>
+        <view class="content-right">
+          <view class="card-title">线性代数篇</view>
+          <view>重复是记忆之母</view>
+        </view>
+      </view>
+      </view>
   </view>
 </scroll-view>
 

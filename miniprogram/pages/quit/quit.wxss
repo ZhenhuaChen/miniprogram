@@ -1,13 +1,52 @@
 /* pages/quit/quit.wxss */
 .quit{
-    padding: 30rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100rpx;
 }
-.answerWrap{
-    margin-top: 30rpx;
+.quit-option{
+    display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 400rpx;
+
 }
-.chooseItem{
-    padding: 30rpx;
-    margin: 40rpx 0rpx;
-    border: 2rpx solid #dddddd;
-    border-radius: 16rpx;
+.quit-no, .quit-yes {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 10px;
+    box-shadow: 5rpx 5rpx 5rpx rgba(0, 0, 0, .1);
+    background-color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quit-no {
+    color: #FF7043;
+}
+.quit-yes {
+    color: #4CAF50;
+}
+.quit-answer-wrap{
+    margin-top: 100rpx;
+    text-align: center;
+}
+.quit-answer{
+    font-size: 50rpx;
+    color: #9C27B0;
+}
+.quit-next{
+    margin-top: 200rpx;
+    width: 80vw;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 40rpx;
+    background-color: #9C27B0;
+    color: #ffffff;
+    text-align: center;
+}
+.ansser-img{
+    width: 200rpx;
+    height: auto;
 }

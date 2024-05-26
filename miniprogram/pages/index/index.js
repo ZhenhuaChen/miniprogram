@@ -1,4 +1,3 @@
-const db = wx.cloud.database()
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 Page({
 
@@ -11,21 +10,26 @@ Page({
       nickName: '',
     },
     hasUserInfo: false,
+    remainDays: 1,
     openId:''
   },
+  
+  getRemainData(){
+    // 获取当前日期
+    const currentDate = new Date();
 
-  getData(){
+    // 指定日期，例如 2024 年 12 月 31 日
+    const specifiedDate = new Date('2024-12-31');
 
-    const tt = db.collection("vip");
-    tt.get().then(res=>{
-      console.log(res,'ppppp')
-    })
-    //doc()只用来查询id
-    // // 查询
-    // db.collection('vip').get().then(res=>{
-    //   console.log(res)
-    // })
+    // 计算两个日期之间的差值（以毫秒为单位）
+    const timeDifference = specifiedDate - currentDate;
+
+    // 将差值转换为天数
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return daysDifference;
   },
+
+
   addData(userInfo){
     const tt = db.collection("vip");
     tt.add({
@@ -49,7 +53,9 @@ Page({
   onLoad: function (options) {
     // 进入小程序获取缓存
     var value = wx.getStorageSync('user')
-    console.log(value,'youshuju')
+    this.setData({
+      remainDays: this.getRemainData(),
+    })
     if(value){
       this.setData({
         userInfo: value,
@@ -66,11 +72,10 @@ Page({
           typs:'getOpenId'
         },
         success:res=>{
-          console.log(res,'结果')
-          wx.setStorageSync('openId',res.result.userInfo.openId)
+          wx.setStorageSync('openId',res.result.openId)
           this.setData({
             havsGetOpenId:true,
-            openId:res.result.userInfo.openId
+            openId:res.result.openId
           })
           wx.hideLoading()
         },
@@ -79,6 +84,7 @@ Page({
         }
       })
     }
+   
   },
 
   /**

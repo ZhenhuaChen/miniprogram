@@ -63,6 +63,7 @@ header {
 .content-main{
   display: flex;
   margin-top: 30rpx;
+
 }
 .check-in{
   position: relative;
@@ -78,21 +79,31 @@ header {
 }
 .header-banner-left{
   flex: 1;
-  text-align: center
+  text-align: center;
+  color: #5702a8;
+  border-right: 1px solid #eeeeee;
 }
 .header-banner-right{
   flex: 1;
   text-align: center;
+  color: #5702a8;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 36rpx;
+  display: flex;
 }
 .persist-wrap{
   border-right: 1rpx solid #eeeeee;
 }
-.persist{
-  font-size: 50rpx;
-  margin-right: 10rpx;
-  color: #5702a8;
+.chooseimg{
+  width: 58rpx;
+  height: 58rpx;
 }
-.process{
-  margin: 16rpx 0rpx;
-  color: #5702a8;
+.freeimg{
+  width: 60rpx;
+  height: 60rpx;
+}
+.rank {
+  text-align: center;
 }
