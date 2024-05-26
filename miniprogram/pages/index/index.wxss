@@ -1,0 +1,98 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  background: #f7f8f9;
+  flex: 1;
+  overflow-y: hidden;
+}
+header {
+  width: 100%;
+}
+.content-wrap{
+  font-size: 32rpx;
+  width: 90%;
+  box-shadow: 5rpx 5rpx 10rpx rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin-top: -80rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 250rpx;
+}
+.remain-day{
+  font-size: 30rpx;
+  color: #ea7070;
+  text-align: center;
+  background-color: #f0f5ff;
+}
+.cotent-text{
+  display: flex;
+  padding: 20rpx;
+}
+.content-left, .content-right{
+  color: #ffffff;
+  font-size: 28rpx;
+  flex: 1;
+  position: absolute;
+  top: 20rpx;
+  left: 30rpx;
+}
+.card-left-img{
+  width: 100%;
+}
+.content-left{
+  /* background-image: url('cloud://cloud1-2gagxf5o5b36fb56.636c-cloud1-2gagxf5o5b36fb56-1324277862/Rectangle@3x (1).png'); */
+}
+.card-title{
+  font-size: 40rpx;
+  padding-bottom: 10rpx;
+}
+.card-left-img{
+  width: 350rpx;
+  height: 212rpx;
+}
+.card-right-img{
+  width: 350rpx;
+  height: 212rpx;
+}
+.content-main{
+  display: flex;
+  margin-top: 30rpx;
+}
+.check-in{
+  position: relative;
+  margin-right: 10rpx;
+}
+.recite{
+  position: relative;
+  margin-left: 10rpx;
+}
+.paiming{
+  width: 45rpx;
+  height: 40rpx;
+}
+.header-banner-left{
+  flex: 1;
+  text-align: center
+}
+.header-banner-right{
+  flex: 1;
+  text-align: center;
+}
+.persist-wrap{
+  border-right: 1rpx solid #eeeeee;
+}
+.persist{
+  font-size: 50rpx;
+  margin-right: 10rpx;
+  color: #5702a8;
+}
+.process{
+  margin: 16rpx 0rpx;
+  color: #5702a8;
+}

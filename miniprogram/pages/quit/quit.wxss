@@ -1,0 +1,13 @@
+/* pages/quit/quit.wxss */
+.quit{
+    padding: 30rpx;
+}
+.answerWrap{
+    margin-top: 30rpx;
+}
+.chooseItem{
+    padding: 30rpx;
+    margin: 40rpx 0rpx;
+    border: 2rpx solid #dddddd;
+    border-radius: 16rpx;
+}

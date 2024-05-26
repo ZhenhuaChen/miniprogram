@@ -1,0 +1,49 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/collection/index",
+        "pages/quit/quit",
+        "pages/need/need"
+    ],
+    "window": {
+        "backgroundColor": "#e6eef5",
+        "backgroundColorContent": "#e6eef5",
+        "backgroundTextStyle": "light",
+        "navigationBarTitleText": "测试云开发",
+        "navigationBarBackgroundColor": "#5702a8"
+    },
+    "tabBar": {
+        "color": "#7d46b2",
+        "selectedColor": "#5702a8",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "/images/main.png",
+                "selectedIconPath": "/images/mainSelected.png"
+            },
+            {
+                "pagePath": "pages/quit/quit",
+                "text": "刷公式",
+                "iconPath": "/images/error.png",
+                "selectedIconPath": "/images/errorSelected.png"
+            },
+            {
+                "pagePath": "pages/collection/index",
+                "text": "收藏",
+                "iconPath": "/images/collection.png",
+                "selectedIconPath": "/images/collectionSelected.png"
+            },
+            {
+                "pagePath": "pages/need/need",
+                "text": "提需求",
+                "iconPath": "/images/require.png",
+                "selectedIconPath": "/images/requireSelected.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "style": "v2",
+    "lazyCodeLoading": "requiredComponents"
+}

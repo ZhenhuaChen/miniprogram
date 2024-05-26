@@ -1,0 +1,23 @@
+<!--components/header.wxml-->
+<view class="userinfo">
+  <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+  <view class="new-user-wrap">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">授权头像</button>
+    <view class="nickname-wrapper">
+      <text class="nickname-label">授权昵称</text>
+      <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+    </view>
+  </view>
+  </block>
+  <block wx:elif="{{!hasUserInfo}}">
+    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+    <view wx:else> 请使用2.10.4及以上版本基础库 </view>
+  </block>
+  <block wx:else>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view class="user-info">
+      <view class="userinfo-nickname">{{userInfo.nickName}}</view>
+      <text>青铜会员</text>
+    </view>
+  </block>
+</view>

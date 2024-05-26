@@ -1,0 +1,61 @@
+/* components/header.wxss */
+.userinfo {
+    height: 260rpx;
+    width: 100%;
+    display: flex;
+    border-radius: 0px 0px 40% 30%;
+    background: linear-gradient(to bottom, #5702a8 40%, #966fe5 95%);
+    color: #ffffff;
+  }
+  
+  .userinfo-avatar {
+    overflow: hidden;
+    width: 128rpx;
+    height: 128rpx;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    margin: 20rpx 20rpx 20rpx 40rpx;
+  }
+  
+  .usermotto {
+    margin-top: 200px;
+  }
+  
+  .avatar-wrapper {
+    color: #ffffff;
+  }
+  .avatar {
+    overflow: hidden;
+    width: 128rpx;
+    height: 128rpx;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+  }
+
+  .nickname-wrapper {
+    display: flex;
+    width: 75%;
+    padding: 16px;
+    box-sizing: border-box;
+    border-top: .5px solid rgba(0, 0, 0, 0.1);
+    border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+  }
+  
+  .nickname-label {
+    width: 105px;
+  }
+  
+  .nickname-input {
+    flex: 1;
+  }
+  .user-info{
+    margin-top: 30rpx;
+  }
+  .new-user-wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  

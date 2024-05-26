@@ -1,0 +1,11 @@
+<!--pages/quit/quit.wxml-->
+<view class="quit">
+    <view>问题dddd</view>
+    <!-- 答案 -->
+    <view class="chooseWrap">
+        <view class="chooseItem">A dfsfsww</view>
+        <view class="chooseItem">A dfsfsww</view>
+        <view class="chooseItem">A dfsfsww</view>
+        <view class="chooseItem">A dfsfsww</view>
+    </view>
+</view>

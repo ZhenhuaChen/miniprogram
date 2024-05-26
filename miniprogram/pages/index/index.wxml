@@ -1,0 +1,57 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  云开发基础
+  <button type="primary" bindtap="getOpenId">点击登录</button>
+  <button type="primary" bindtap="addData">添加数据</button>
+  <form bindsubmit="btnSub">
+    <input type="text" name="phone" placeholder="请输入手机号"></input>
+    <button type="primary" form-type="submit">提交</button>
+  </form>
+</view>
+<view> -->
+ <scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <header userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}"></header>
+    <view class="content-wrap">
+      <view class="remain-day">距离2025考研还剩300天</view>
+      <view class="cotent-text">
+        <!-- <view class="header-banner-left">
+          坚持天数
+          <view class="persist-wrap"><text class="persist">1</text>天</view>
+          <view>
+          <image class="paiming" src="cloud://cloud1-2gagxf5o5b36fb56.636c-cloud1-2gagxf5o5b36fb56-1324277862/奖杯.png"></image>
+            排名：23
+          </view>
+        </view>     -->
+        <!-- <view class="header-banner-right">
+          当前进度
+            <view class="process">高中基础回顾</view>
+          <view>
+          <image class="paiming" src="cloud://cloud1-2gagxf5o5b36fb56.636c-cloud1-2gagxf5o5b36fb56-1324277862/奖杯.png"></image>
+            排名：23
+          </view>
+        </view> -->
+      </view>
+    </view>
+    <view class="content-main">
+      <view class="check-in">
+        <image class="card-left-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-left.png" ></image>
+         <view class="content-left">
+          <view class="card-title">数二公式刷题</view>
+          <view>
+          反复疯狂记忆，一个月搞定高数公式
+          </view>
+        </view>
+      </view>
+      <view class="recite">
+        <image class="card-right-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-right.png" ></image>
+        <view class="content-right">
+          <view class="card-title">背诵卡片</view>
+          <view>每天过15分钟， 轻松掌握</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- </view> -->
