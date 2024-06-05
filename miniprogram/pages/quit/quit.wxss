@@ -1,4 +1,5 @@
 /* pages/quit/quit.wxss */
+@import "../../miniprogram_npm/@rojer/katex-mini/index.wxss";
 .quit{
     display: flex;
     flex-direction: column;
@@ -31,6 +32,10 @@
 .quit-answer-wrap{
     margin-top: 100rpx;
     text-align: center;
+}
+.quot-answer-content{
+    width: 80vw;
+    overflow: scroll;
 }
 .quit-answer{
     font-size: 50rpx;

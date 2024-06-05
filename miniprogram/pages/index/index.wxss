@@ -22,7 +22,7 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 250rpx;
+  height: 210rpx;
 }
 .remain-day{
   font-size: 30rpx;
@@ -103,7 +103,4 @@ header {
 .freeimg{
   width: 60rpx;
   height: 60rpx;
-}
-.rank {
-  text-align: center;
 }

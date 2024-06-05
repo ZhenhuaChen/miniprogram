@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@rojer/katex-mini": "^1.1.3"
+  }
+}

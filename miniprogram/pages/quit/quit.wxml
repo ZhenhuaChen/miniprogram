@@ -1,14 +1,17 @@
 <!--pages/quit/quit.wxml-->
 <view class="quit">
     <view>{{formula.name}}</view>
+    <view wx:if="{{formula.subName}}">{{formula.subName}}</view>
     <view class="quit-option" wx:if="{{!showAnswer}}">
         <view class="quit-no" bindtap="handleNo">不知道</view>
         <view class="quit-yes" bindtap="handleYes">easy</view>
     </view>
     <view wx:else class="quit-answer-wrap">
-        <!-- <view class="quit-answer">{{formula.formula}}</view> -->
-        <image src="/images/formula/{{formula.id}}.png" alt="" mode="heightFix" style="height: 80rpx;"/>
-        <view class="quit-next" bindtap="handleNext">下一个</view>
+        <view class="quot-answer-content">
+            <rich-text class="quit-answer" nodes="{{nodes}}"></rich-text>
+        </view>
+        <view wx:if="{{formula.description}}">{{formula.description}}</view>
+        <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
     </view>
        
 </view>

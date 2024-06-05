@@ -28,10 +28,6 @@
           </view>
         </view>
       </view>
-      <view class="rank">
-        <image class="paiming" src="../../images/奖杯.png"></image>
-          排名：23
-      </view>
     </view>
     <view class="content-main">
       <view class="check-in">

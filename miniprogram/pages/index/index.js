@@ -30,23 +30,6 @@ Page({
   },
 
 
-  addData(userInfo){
-    const tt = db.collection("vip");
-    tt.add({
-      data:{
-        phone:'18362986358',
-      },
-      success:function(){
-        console.log("添加成功")
-      },
-      fail:function(){
-        console.log("添加失败")
-      }
-    })
-  },
-
-
-
   /**
    * 生命周期函数--监听页面加载
    */

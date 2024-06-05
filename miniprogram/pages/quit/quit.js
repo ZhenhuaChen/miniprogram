@@ -1,56 +1,80 @@
 // pages/quit/quit.js
-const db = wx.cloud.database();
+import parse from "@rojer/katex-mini";
+import { getMath2Data } from "../../service/api";
+const katexOption = {
+  displayMode: true,
+};
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     formulaMap: [],
-    remainIndex:  0,
-    currentIndex:  0,
+    remainIndex: 0,
+    currentIndex: 0,
     formula: {},
+    nodes: [],
     showAnswer: false,
+    currentPage: 1,
+    finish: false
   },
 
   getData() {
-    const data = db.collection("math2");
-    const itemIndex = wx.getStorageSync('currentIndex') | 0;
-    const that = this;
-   data.get({
-      success: function (res) {
+    let that = this;
+    const itemIndex = wx.getStorageSync("math2currentIndex") | 0;
+    getMath2Data()
+      .then((res) => {
         that.setData({
-            formulaMap: res.data,
-            formula: res.data[itemIndex],
-            remainIndex: itemIndex,
-            currentIndex:  itemIndex,
-        })
-      },
+          formulaMap: res.data,
+          formula: res.data[itemIndex],
+          remainIndex: itemIndex,
+          currentIndex: itemIndex,
+        });
+      })
+      .catch((err) => {
+        console.log(err, "eeee");
+      });
+  },
+
+  handleShowAnswer() {
+    console.log(this.data.formula, "8888888");
+    this.setData({
+      showAnswer: true,
+      nodes: parse(this.data.formula.formula, {
+        throwError: true,
+        ...katexOption,
+      }),
     });
   },
 
-  
   handleNo() {
-    console.log('no')
-    const disabledMathMap = wx.getStorageSync('disabledMathMap') || [];
-    wx.setStorageSync('disabledMathMap', disabledMathMap.concat(this.data.formula.id))
-    this.setData({
-        showAnswer: true
-    })
+    const disabledMathMap = wx.getStorageSync("disabledMathMap") || [];
+    wx.setStorageSync(
+      "disabledMathMap",
+      disabledMathMap.concat(this.data.formula.id)
+    );
+    this.handleShowAnswer();
   },
-  handleYes(){
-    console.log('yes')
+  handleYes() {
     this.setData({
-        showAnswer: true
-    })
+      showAnswer: true,
+    });
+    this.handleShowAnswer();
   },
-  handleNext(){
-    this.setData({
-        currentIndex: this.data.currentIndex + 1,
-        formula: this.data.formulaMap[this.data.currentIndex + 1],
+  handleNext() {
+    if (this.data.currentIndex < this.data.formulaMap.length) {
+      const tempIndex = this.data.currentIndex + 1;
+      this.setData({
+        currentIndex: tempIndex,
+        formula: this.data.formulaMap[tempIndex],
         showAnswer: false,
-    })
+      });
+    }else{
+        this.setData({
+            finish: true
+        });
+    }
   },
-  
 
   /**
    * 生命周期函数--监听页面加载
