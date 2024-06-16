@@ -1,4 +1,5 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
+const app = getApp();
 Page({
 
   /**
@@ -27,6 +28,15 @@ Page({
     // 将差值转换为天数
     const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     return daysDifference;
+  },
+
+  goStuday: function(event) {
+    const param = event.currentTarget.dataset.param;
+    console.log(param,'pppp')
+    app.globalData.tabBarParam = param;  
+    wx.switchTab({
+      url: '/pages/quit/quit'
+    })
   },
 
 

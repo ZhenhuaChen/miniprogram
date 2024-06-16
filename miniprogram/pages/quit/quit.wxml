@@ -1,7 +1,9 @@
 <!--pages/quit/quit.wxml-->
 <view class="quit">
     <view>{{formula.name}}</view>
-    <view wx:if="{{formula.subName}}">{{formula.subName}}</view>
+    <view wx:if="{{formula.subName}}" class="quit-question">
+        <rich-text  nodes="{{subName}}"></rich-text>
+    </view>
     <view class="quit-option" wx:if="{{!showAnswer}}">
         <view class="quit-no" bindtap="handleNo">不知道</view>
         <view class="quit-yes" bindtap="handleYes">easy</view>
@@ -10,7 +12,9 @@
         <view class="quot-answer-content">
             <rich-text class="quit-answer" nodes="{{nodes}}"></rich-text>
         </view>
-        <view wx:if="{{formula.description}}">{{formula.description}}</view>
+        <view wx:if="{{formula.description}}" class="quit-question">
+            <rich-text nodes="{{description}}"></rich-text>
+        </view>
         <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
     </view>
        

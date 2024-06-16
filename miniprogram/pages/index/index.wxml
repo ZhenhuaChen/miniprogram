@@ -30,7 +30,7 @@
       </view>
     </view>
     <view class="content-main">
-      <view class="check-in">
+      <view class="check-in" bindtap="goStuday" data-param="2">
         <image class="card-left-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-left.png" ></image>
          <view class="content-left">
           <view class="card-title">高等数学篇</view>
@@ -39,8 +39,8 @@
           </view>
         </view>
       </view>
-      <view class="recite">
-        <image class="card-right-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-right.png" ></image>
+      <view class="recite" bindtap="goStuday" data-param="1">
+        <image class="card-right-img" mode="aspectFit" src="cloud://kaoyan-1gjzu7x39819d97c.6b61-kaoyan-1gjzu7x39819d97c-1324277862/bg-right.png"></image>
         <view class="content-right">
           <view class="card-title">高中基础篇</view>
           <view>每天过15分钟， 轻松掌握</view>

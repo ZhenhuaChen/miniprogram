@@ -1,6 +1,7 @@
 // pages/quit/quit.js
 import parse from "@rojer/katex-mini";
-import { getMath2Data } from "../../service/api";
+import { getMathBaseData, getHighMathData, getXdData } from "../../service/api";
+const app = getApp();
 const katexOption = {
   displayMode: true,
 };
@@ -16,28 +17,63 @@ Page({
     nodes: [],
     showAnswer: false,
     currentPage: 1,
-    finish: false
+    finish: false,
+    subName: '',
+    description: ''
   },
-
+  
   getData() {
+    const param = app.globalData.tabBarParam;
+    console.log(param, '参数');
     let that = this;
-    const itemIndex = wx.getStorageSync("math2currentIndex") | 0;
-    getMath2Data()
-      .then((res) => {
-        that.setData({
-          formulaMap: res.data,
-          formula: res.data[itemIndex],
-          remainIndex: itemIndex,
-          currentIndex: itemIndex,
-        });
-      })
-      .catch((err) => {
-        console.log(err, "eeee");
+  
+    // 根据参数选择对应的获取数据函数和缓存索引键
+    let getDataFunction;
+    let storageKey;
+  
+    switch (param) {
+      case '1':
+        getDataFunction = getMathBaseData;
+        storageKey = "mathBasecurrentIndex";
+        break;
+      case '2':
+        getDataFunction = getHighMathData;
+        storageKey = "math2currentIndex";
+        break;
+      case '3':
+        getDataFunction = getXdData;
+        storageKey = "xdcurrentIndex";
+        break;
+      default:
+        getDataFunction = getHighMathData;
+        storageKey = "math2currentIndex";
+        return;
+    }
+  
+    const itemIndex = wx.getStorageSync(storageKey) || 0;
+  
+    getDataFunction().then((res) => {
+      const data = res.data;
+      const currentFormula = data[itemIndex];
+      that.setData({
+        formulaMap: data,
+        formula: currentFormula,
+        subName: currentFormula.subName ? parse(currentFormula.subName, {
+          throwError: true,
+          ...katexOption,
+        }) : '',
+        remainIndex: itemIndex,
+        currentIndex: itemIndex,
       });
+    })
+    .catch((err) => {
+      console.log(err, "eeee");
+    });
   },
+  
+  
 
   handleShowAnswer() {
-    console.log(this.data.formula, "8888888");
     this.setData({
       showAnswer: true,
       nodes: parse(this.data.formula.formula, {
@@ -68,6 +104,15 @@ Page({
         currentIndex: tempIndex,
         formula: this.data.formulaMap[tempIndex],
         showAnswer: false,
+        subName: this.data.formulaMap[tempIndex].subName ? parse(this.data.formulaMap[tempIndex].subName, {
+          throwError: true,
+          ...katexOption,
+        }) : '',
+        description:this.data.formulaMap[tempIndex].description ? parse(this.data.formulaMap[tempIndex].description, {
+          throwError: true,
+       
+          ...katexOption,
+        }) : '',
       });
     }else{
         this.setData({
@@ -80,7 +125,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.getData();
+   
   },
 
   /**
@@ -91,12 +136,29 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    this.getData();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {},
+  onHide() {
+    const param = app.globalData.tabBarParam;
+    const storageKeys = {
+      '1': 'mathBasecurrentIndex',
+      '2': 'math2currentIndex',
+      '3': 'xdcurrentIndex'
+    };
+  
+    const storageKey = storageKeys[param];
+  
+    if (storageKey) {
+      const indexToStore = this.data.finish ? 0 : this.data.currentIndex;
+      wx.setStorageSync(storageKey, indexToStore);
+    }
+  },
+  
 
   /**
    * 生命周期函数--监听页面卸载

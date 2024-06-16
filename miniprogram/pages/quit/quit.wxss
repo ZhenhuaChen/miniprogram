@@ -38,7 +38,7 @@
     overflow: scroll;
 }
 .quit-answer{
-    font-size: 50rpx;
+    font-size: 42rpx;
     color: #9C27B0;
 }
 .quit-next{
@@ -54,4 +54,9 @@
 .ansser-img{
     width: 200rpx;
     height: auto;
+}
+.quit-question{
+    width: 80vw;
+    overflow: scroll;
+    font-size: 30rpx;
 }
