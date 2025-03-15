@@ -20,7 +20,7 @@ Page({
     const currentDate = new Date();
 
     // 指定日期，例如 2024 年 12 月 31 日
-    const specifiedDate = new Date('2024-12-31');
+    const specifiedDate = new Date('2025-12-21');
 
     // 计算两个日期之间的差值（以毫秒为单位）
     const timeDifference = specifiedDate - currentDate;
@@ -32,7 +32,6 @@ Page({
 
   goStuday: function(event) {
     const param = event.currentTarget.dataset.param;
-    console.log(param,'pppp')
     app.globalData.tabBarParam = param;  
     wx.switchTab({
       url: '/pages/quit/quit'
@@ -62,10 +61,11 @@ Page({
       wx.cloud.callFunction({
         name:'quickstartFunctions',
         data:{
-          typs:'getOpenId'
+          type:'getOpenId'
         },
         success:res=>{
-          wx.setStorageSync('openId',res.result.openId)
+          console.log(res.result.openid, 'jijiji')
+          wx.setStorageSync('openId',res.result.openid)
           this.setData({
             havsGetOpenId:true,
             openId:res.result.openId

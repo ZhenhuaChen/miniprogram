@@ -23,9 +23,11 @@ Page({
   },
   
   getData() {
-    const param = app.globalData.tabBarParam;
-    console.log(param, '参数');
+    wx.showLoading()
+
+    const param = app.globalData.tabBarParam || '1';
     let that = this;
+    console.log(param,'iiiii')
   
     // 根据参数选择对应的获取数据函数和缓存索引键
     let getDataFunction;
@@ -65,6 +67,7 @@ Page({
         remainIndex: itemIndex,
         currentIndex: itemIndex,
       });
+      wx.hideLoading()
     })
     .catch((err) => {
       console.log(err, "eeee");
@@ -144,6 +147,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
+    this.setData({
+      showAnswer: false
+    })
     const param = app.globalData.tabBarParam;
     const storageKeys = {
       '1': 'mathBasecurrentIndex',

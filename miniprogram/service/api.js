@@ -35,9 +35,11 @@ exports.getMathBaseData = async (event, context) => {
 };
 
 exports.getHighMathData = async (event, context) => {
-  return await getCollectionData('highMath');
+  // return await getCollectionData('highMath');
+  return await getCollectionData('math2');
 };
 
 exports.getXdData = async (event, context) => {
-  return await getCollectionData('xdMath');
+  // return await getCollectionData('xdMath');
+  return await getCollectionData('math2');
 };
