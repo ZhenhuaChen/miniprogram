@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/quit/quit"
+        "pages/quit/quit",
+        "pages/list/list"
     ],
     "window": {
         "backgroundColor": "#e6eef5",
@@ -22,8 +23,8 @@
                 "selectedIconPath": "/images/mainSelected.png"
             },
             {
-                "pagePath": "pages/quit/quit",
-                "text": "刷公式",
+                "pagePath": "pages/list/list",
+                "text": "公式列表",
                 "iconPath": "/images/require.png",
                 "selectedIconPath": "/images/requireSelected.png"
             }

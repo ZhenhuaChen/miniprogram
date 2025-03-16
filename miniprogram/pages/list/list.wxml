@@ -1,0 +1,38 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input placeholder="请输入关键词" bindinput="onInput" />
+  </view>
+
+  <!-- 公式列表 -->
+  <view class="formula-list">
+    <block wx:for="{{formulas}}" wx:key="_id">
+      <view class="formula-item">
+        <!-- 公式标题 -->
+        <view class="formula-header" bindtap="toggleMemoryMode" data-id="{{item._id}}">
+          <text>{{item.name}}</text>
+        </view>
+
+        <!-- 公式内容 -->
+        <view class="formula-content" wx:if="{{!item.hideContent}}">
+          <rich-text nodes="{{item.formulaHtml}}"></rich-text>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="formula-actions">
+          <button bindtap="toggleFavorite" data-id="{{item._id}}">
+            {{item.isFavorite ? '取消收藏' : '收藏'}}
+          </button>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 加载提示 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="no-more" wx:if="{{!hasMore}}">
+    <text>没有更多数据了</text>
+  </view>
+</view>

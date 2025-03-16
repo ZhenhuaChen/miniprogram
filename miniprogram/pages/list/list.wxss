@@ -1,0 +1,106 @@
+/* 页面容器 */
+@import "../../miniprogram_npm/@rojer/katex-mini/index.wxss";
+.container {
+    padding: 16px;
+    background-color: #f5f5f5; /* 浅灰色背景 */
+  }
+  
+  /* 搜索栏 */
+  .search-bar {
+    margin-bottom: 16px;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 公式列表 */
+  .formula-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* 公式卡片 */
+  .formula-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 公式标题 */
+  .formula-header {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8931dc;
+    margin-bottom: 8px;
+  }
+  
+  .formula-header text:first-child {
+    font-size: 16px;
+  }
+  
+  .formula-header text:last-child {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* 公式内容 */
+  .formula-content {
+    width: 80vw;
+    overflow-x: scroll;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .formula-content text {
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  /* 操作按钮 */
+  .formula-actions {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .formula-actions button {
+    background-color: #5702a8; /* 主色系 */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .formula-actions button:active {
+    background-color: #450183; /* 深紫色 */
+  }
+  
+  /* 加载提示 */
+  .loading,
+  .no-more {
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .loading text,
+  .no-more text {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }

@@ -12,7 +12,7 @@ Page({
   data: {
     formulaMap: [],
     remainIndex: 0,
-    currentIndex: 0,
+    currentIndex: 20,
     formula: {},
     nodes: [],
     showAnswer: false,
