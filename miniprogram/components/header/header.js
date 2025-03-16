@@ -11,7 +11,6 @@ Component({
         avatarUrl: defaultAvatarUrl,
         nickName: '',
         observer: function(newVal, oldVal) {
-          console.log(newVal,'1111')
         }
       }
     },
@@ -19,7 +18,6 @@ Component({
       type: Boolean,
       value: false,
       observer: function(newVal, oldVal) {
-        console.log(newVal,'11331')
       }
     }
   },

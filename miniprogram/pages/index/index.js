@@ -32,10 +32,15 @@ Page({
 
   goStuday: function(event) {
     const param = event.currentTarget.dataset.param;
-    app.globalData.tabBarParam = param;  
-    wx.switchTab({
-      url: '/pages/quit/quit'
-    })
+    if(param === '1'){
+      wx.navigateTo({
+        url: "/pages/quit/quit",
+      });
+    }else{
+      wx.navigateTo({
+        url: "/pages/quit/quit?onlyfavorite=true",
+      });
+    }
   },
 
 
@@ -64,7 +69,6 @@ Page({
           type:'getOpenId'
         },
         success:res=>{
-          console.log(res.result.openid, 'jijiji')
           wx.setStorageSync('openId',res.result.openid)
           this.setData({
             havsGetOpenId:true,

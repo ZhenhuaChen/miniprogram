@@ -11,9 +11,13 @@ Page({
     isLoading: false, // 是否正在加载
     hasMore: true, // 是否还有更多数据
     keyword: "", // 搜索关键词
+    favoriteIds: [], // 用户收藏的 ID 列表
   },
 
   onLoad() {
+    // 从本地存储中获取用户收藏的 ID 列表
+    const favoriteIds = wx.getStorageSync("favoriteIds") || [];
+    this.setData({ favoriteIds });
     // 页面加载时初始化数据
     this.loadFormulas();
   },
@@ -46,7 +50,7 @@ Page({
         const newFormulas = res.data.map((item) => ({
           ...item,
           hideContent: false,
-          isFavorite: false,
+          isFavorite: this.data.favoriteIds.includes(item._id), // 初始化收藏状态
           subNameHtml: this.parseLaTeX(item.subName),
           formulaHtml: this.parseLaTeX(item.formula), // 解析 LaTeX 公式
         }));
@@ -112,12 +116,30 @@ Page({
   // 切换收藏状态
   toggleFavorite(e) {
     const formulaId = e.currentTarget.dataset.id;
+    let favoriteIds = this.data.favoriteIds;
+
+    if (favoriteIds.includes(formulaId)) {
+      // 如果已经收藏，则取消收藏
+      favoriteIds = favoriteIds.filter((id) => id !== formulaId);
+    } else {
+      // 如果未收藏，则添加到收藏列表
+      favoriteIds.push(formulaId);
+    }
+
+    // 更新本地存储
+    wx.setStorageSync("favoriteIds", favoriteIds);
+
+    // 更新页面数据
     const formulas = this.data.formulas.map((item) => {
       if (item._id === formulaId) {
-        item.isFavorite = !item.isFavorite;
+        item.isFavorite = favoriteIds.includes(formulaId);
       }
       return item;
     });
-    this.setData({ formulas: formulas });
+
+    this.setData({
+      formulas: formulas,
+      favoriteIds: favoriteIds,
+    });
   },
 });

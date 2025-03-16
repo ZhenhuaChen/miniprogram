@@ -1,21 +1,32 @@
 <!--pages/quit/quit.wxml-->
 <view class="quit">
-    <view>{{formula.name}}</view>
-    <view wx:if="{{formula.subName}}" class="quit-question">
-        <rich-text  nodes="{{subName}}"></rich-text>
-    </view>
-    <view class="quit-option" wx:if="{{!showAnswer}}">
-        <view class="quit-no" bindtap="handleNo">不知道</view>
-        <view class="quit-yes" bindtap="handleYes">easy</view>
-    </view>
-    <view wx:else class="quit-answer-wrap">
-        <view class="quot-answer-content">
+    <view class="quit-content" wx:if="{{formula.name}}">
+      <view>{{formula.name}}</view>
+        <view wx:if="{{formula.subName}}" class="quit-question">
+            <rich-text  nodes="{{subName}}"></rich-text>
+        </view>
+        <view class="quit-option" wx:if="{{!showAnswer}}">
+            <view class="quit-no" bindtap="handleNo">不知道</view>
+            <view class="quit-yes" bindtap="handleYes">easy</view>
+        </view>
+        <view wx:else class="quit-answer-wrap">
+          <view class="quot-answer-content">
             <rich-text class="quit-answer" nodes="{{nodes}}"></rich-text>
-        </view>
-        <view wx:if="{{formula.description}}" class="quit-question">
+          </view>
+          <view wx:if="{{formula.description}}" class="quit-question">
             <rich-text nodes="{{description}}"></rich-text>
-        </view>
-        <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
+          </view>
+          <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
+          <view class="quit-next" bindtap="handleNext" data-param="restart"  wx:else>从头开始</view>
+      </view>
     </view>
-       
+    <view wx:else>
+        <view class="tip">
+            <text class="tip-text">你还没有收藏公式</text>
+            <text class="tip-text">快去收藏吧</text>
+        </view>
+        <view class="button" bindtap="goToCollection">
+            <text class="button-text">去收藏</text>
+        </view>
+    </view>
 </view>

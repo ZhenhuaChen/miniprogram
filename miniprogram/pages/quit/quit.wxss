@@ -6,6 +6,12 @@
     align-items: center;
     margin-top: 100rpx;
 }
+.quit-content{
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+}
 .quit-option{
     display: flex;
   justify-content: space-around;
@@ -59,4 +65,34 @@
     width: 80vw;
     overflow: scroll;
     font-size: 30rpx;
+}
+.tip {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tip-text {
+    display: block;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.button {
+    background-color: #9C27B0;
+    padding: 12px 24px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.button:active {
+    background-color: #450183;
+}
+
+.button-text {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
 }

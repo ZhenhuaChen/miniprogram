@@ -1,10 +1,11 @@
 const db = wx.cloud.database();
 const MAX_LIMIT = 20;
 
-async function getCollectionData(collectionName) {
+async function getCollectionData(collectionName, options = {}) {
+  const { onlyfavorite = false } = options; // 从 options 中获取 onlyfavorite 参数
+
   // 先取出集合记录总数
   const countResult = await db.collection(collectionName).count();
-  console.log(countResult, '总数');
   const total = countResult.total;
 
   // 计算需分几次取
@@ -21,25 +22,27 @@ async function getCollectionData(collectionName) {
   const results = await Promise.all(tasks);
 
   // 合并所有结果
-  return results.reduce((acc, cur) => {
-    console.log(acc, cur, '1233');
+  const allData = results.reduce((acc, cur) => {
     return {
       data: acc.data.concat(cur.data),
       errMsg: acc.errMsg,
     };
-  }, { data: [], errMsg: '' });
+  }, { data: [], errMsg: "" });
+
+  // 如果 onlyfavorite 为 true，则过滤数据
+  if (onlyfavorite) {
+    const favoriteIds = wx.getStorageSync("favoriteIds") || []; // 获取本地存储中的 favoriteIds
+    const filteredData = allData.data.filter((item) => favoriteIds.includes(item._id)); // 过滤数据
+    return {
+      data: filteredData,
+      errMsg: allData.errMsg,
+    };
+  }
+
+  // 否则返回全部数据
+  return allData;
 }
 
 exports.getMathBaseData = async (event, context) => {
-  return await getCollectionData('math2');
-};
-
-exports.getHighMathData = async (event, context) => {
-  // return await getCollectionData('highMath');
-  return await getCollectionData('math2');
-};
-
-exports.getXdData = async (event, context) => {
-  // return await getCollectionData('xdMath');
-  return await getCollectionData('math2');
+  return await getCollectionData('math2', {'onlyfavorite': event});
 };
