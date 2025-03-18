@@ -28,13 +28,17 @@ Page({
 
     const param = '1';
     let that = this;
-    const lastRember = this.data.onlyfavorite ? 'onlyfavoriteIndex' : 'mathBasecurrentIndex';
+    const lastRember = that.data.onlyfavorite ? 'onlyfavoriteIndex' : 'mathBasecurrentIndex';
   
     // 根据参数选择对应的获取数据函数和缓存索引键
-    const itemIndex = wx.getStorageSync(lastRember) || 0;
+    let itemIndex = wx.getStorageSync(lastRember) || 0;
   
     getMathBaseData(this.data.onlyfavorite).then((res) => {
       const data = res.data;
+      if(itemIndex >= data.length) {
+        itemIndex = 0;
+        wx.setStorageSync(lastRember, 0);
+      }
       if(res.data.length > 0) {
         const currentFormula = data[itemIndex];
         that.setData({
