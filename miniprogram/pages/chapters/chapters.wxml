@@ -1,0 +1,19 @@
+<!--pages/chapters/chapters.wxml-->
+<scroll-view scroll-y>
+    <view class="container">
+        <view class="chapter-list">
+            <view class="chapter-item" wx:for="{{chapters}}" wx:key="index" bindtap="onChapterTap" data-index="{{index}}">
+                <view class="left-content">
+                    <view class="chapter-title">{{item.title}}</view>
+                    <view class="progress-container">
+                        <view class="progress-bar">
+                            <progress percent="{{item.progress}}" active activeColor="#a044ff" stroke-width="4" />
+                        </view>
+                        <text class="progress-text">{{item.progress}}%</text>
+                    </view>
+                </view>
+                <button class="test-button" type="primary" size="mini" bindtap="defaultTap" hover-class="button-hover">去检测</button>
+            </view>
+        </view>
+    </view>
+</scroll-view>

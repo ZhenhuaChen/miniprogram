@@ -15,17 +15,15 @@
     <view class="content-wrap">
       <view class="remain-day">距离2026考研还剩{{remainDays}}天</view>
       <view class="cotent-text">
-        <view class="header-banner-left">
-          自由形式
-           <view>
-            <image class="freeimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/自由动态.png" ></image>
-          </view>
+        <view class="header-banner-left" bindtap="goChapter">
+          学习天数
+						<view class="stat-value">1<text class="small-text">天</text></view>
+            <!-- <image class="freeimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/自由动态.png" ></image> -->
         </view>    
         <view class="header-banner-right">
-          选择形式
-          <view>
-            <image class="chooseimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/选择.png" ></image>
-          </view>
+          整体进度
+						<view class="stat-value">60<text class="small-text">%</text></view>
+            <!-- <image class="chooseimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/选择.png" ></image> -->
         </view>
       </view>
     </view>

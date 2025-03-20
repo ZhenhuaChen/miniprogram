@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/quit/quit",
-        "pages/list/list"
+        "pages/list/list",
+        "pages/chapters/chapters"
     ],
     "window": {
         "backgroundColor": "#e6eef5",

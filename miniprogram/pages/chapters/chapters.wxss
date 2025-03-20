@@ -1,0 +1,70 @@
+/* 容器样式 */
+.container {
+    width: 100vw;
+    padding: 20px;
+}
+
+/* 章节列表样式 */
+.chapter-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 章节项样式 */
+.chapter-item {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 左侧内容样式 */
+.left-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+/* 章节标题样式 */
+.chapter-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 进度条容器样式 */
+.progress-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.progress-bar{
+    width: 100%;
+}
+
+/* 进度条文本样式 */
+.progress-text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 按钮样式 */
+.test-button {
+    background: linear-gradient(135deg, #6807c1, #a044ff);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-left: 16px;
+}
+
+/* 按钮点击效果 */
+.button-hover {
+    opacity: 0.8;
+}

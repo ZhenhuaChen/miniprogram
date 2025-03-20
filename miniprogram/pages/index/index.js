@@ -42,6 +42,11 @@ Page({
       });
     }
   },
+  goChapter: function(event) {
+    wx.navigateTo({
+      url: "/pages/chapters/chapters",
+    });
+  },
 
 
   /**

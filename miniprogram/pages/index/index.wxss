@@ -22,7 +22,6 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 210rpx;
 }
 .remain-day{
   font-size: 30rpx;
@@ -33,6 +32,7 @@ header {
 .cotent-text{
   display: flex;
   padding: 20rpx;
+  font-size: 12px;
 }
 .content-left, .content-right{
   color: #ffffff;
@@ -90,7 +90,6 @@ header {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 36rpx;
   display: flex;
 }
 .persist-wrap{
@@ -103,4 +102,13 @@ header {
 .freeimg{
   width: 60rpx;
   height: 60rpx;
+}
+
+/* 统计值样式 */
+.stat-value {
+    font-size: 18px;
+    font-weight: bold;
+}
+.small-text {
+  font-size: 12px;
 }
