@@ -16,11 +16,17 @@
           <view wx:if="{{formula.description}}" class="quit-question">
             <rich-text nodes="{{description}}"></rich-text>
           </view>
-          <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
-          <view class="quit-next" bindtap="handleNext" data-param="restart"  wx:else>从头开始</view>
+          <view class="quit-bottom">
+           <view wx:if="{{needMorePractice}}" class="quit-need-more-practice">
+            稍后章节结束后会再次出现练习
+          </view>
+            <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
+            <view class="quit-next" bindtap="handleNext" data-param="restart"  wx:else>从头开始</view>
+          </view>
+         
       </view>
     </view>
-    <view wx:else>
+    <view wx:if="{{onlyfavorite}}">
         <view class="tip">
             <text class="tip-text">你还没有收藏公式</text>
             <text class="tip-text">快去收藏吧</text>

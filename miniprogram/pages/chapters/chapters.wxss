@@ -56,11 +56,10 @@
 }
 
 /* 按钮样式 */
-.test-button {
+button.test-button {
     background: linear-gradient(135deg, #6807c1, #a044ff);
     color: #fff;
     border-radius: 20px;
-    font-size: 14px;
     margin-left: 16px;
 }
 

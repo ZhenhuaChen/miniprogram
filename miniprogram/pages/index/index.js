@@ -12,6 +12,7 @@ Page({
     },
     hasUserInfo: false,
     remainDays: 1,
+    totalProgress: 0,
     openId:''
   },
   
@@ -29,12 +30,31 @@ Page({
     const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     return daysDifference;
   },
+  getProgress(){
+    const userProgress = wx.getStorageSync('userProgress') || {};
+    const formulaIdSet = new Set();
+    for (const type in userProgress) {
+      if (Array.isArray(userProgress[type])) {
+        userProgress[type].forEach(id => formulaIdSet.add(id));
+      }
+    }
+    if(formulaIdSet.size) {
+      return parseInt((formulaIdSet.size / 112) * 100)
+    }else{
+      return 0
+    }
+  },
+  // 获取当前日期（格式：YYYY-MM-DD）
+  getCurrentDate() {
+    const date = new Date();
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  },
 
   goStuday: function(event) {
     const param = event.currentTarget.dataset.param;
     if(param === '1'){
       wx.navigateTo({
-        url: "/pages/quit/quit",
+        url: "/pages/chapters/chapters",
       });
     }else{
       wx.navigateTo({
@@ -55,9 +75,6 @@ Page({
   onLoad: function (options) {
     // 进入小程序获取缓存
     var value = wx.getStorageSync('user')
-    this.setData({
-      remainDays: this.getRemainData(),
-    })
     if(value){
       this.setData({
         userInfo: value,
@@ -65,6 +82,16 @@ Page({
       })
     }
     if(!this.data.openId){
+      const todayDate = this.getCurrentDate(); // 当前日期
+      let lastStudy = wx.getStorageSync('lastStudy') || { date: todayDate, studyDays: 1 }; // 获取缓存数据，默认为空
+
+      if (lastStudy.date !== todayDate) {
+        lastStudy.date = todayDate;
+        lastStudy.studyDays += 1;
+        wx.setStorageSync('lastStudy', lastStudy);
+      }
+
+      
       wx.showLoading({
         title:'登录中'
       });
@@ -74,10 +101,10 @@ Page({
           type:'getOpenId'
         },
         success:res=>{
-          wx.setStorageSync('openId',res.result.openid)
           this.setData({
             havsGetOpenId:true,
-            openId:res.result.openId
+            openId:res.result.openId,
+            totalStudyDays: lastStudy.studyDays
           })
           wx.hideLoading()
         },
@@ -100,6 +127,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      remainDays: this.getRemainData(),
+      totalProgress: this.getProgress()
+    })
     
   },
 

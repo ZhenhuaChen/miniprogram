@@ -33,24 +33,41 @@ Page({
     // 根据参数选择对应的获取数据函数和缓存索引键
     let itemIndex = wx.getStorageSync(lastRember) || 0;
   
-    getMathBaseData(this.data.onlyfavorite).then((res) => {
+    getMathBaseData(this.data.onlyfavorite, this.data.type).then((res) => {
       const data = res.data;
       if(itemIndex >= data.length) {
         itemIndex = 0;
         wx.setStorageSync(lastRember, 0);
       }
       if(res.data.length > 0) {
-        const currentFormula = data[itemIndex];
-        that.setData({
-          formulaMap: data,
-          formula: currentFormula,
-          subName: currentFormula.subName ? parse(currentFormula.subName, {
-            throwError: true,
-            ...katexOption,
-          }) : '',
-          remainIndex: itemIndex,
-          currentIndex: itemIndex,
-        });
+        const knownFormulas = wx.getStorageSync('userProgress') || {};
+        if(this.data.type && knownFormulas[`type_${this.data.type}`]){
+          const resultData = data.filter((item) => !knownFormulas[`type_${this.data.type}`].includes(item.id));
+          const currentFormula = resultData.length > 0 ? resultData[0] : data[itemIndex];
+          that.setData({
+            formulaMap: resultData.length > 0 ? resultData : data,
+            formula: currentFormula,
+            subName: currentFormula.subName ? parse(currentFormula.subName, {
+              throwError: true,
+              ...katexOption,
+            }) : '',
+            remainIndex: itemIndex,
+            currentIndex: itemIndex,
+          });
+        }else{
+          const currentFormula = data[itemIndex];
+          that.setData({
+            formulaMap: data,
+            formula: currentFormula,
+            subName: currentFormula.subName ? parse(currentFormula.subName, {
+              throwError: true,
+              ...katexOption,
+            }) : '',
+            remainIndex: itemIndex,
+            currentIndex: itemIndex,
+          });
+        }
+        
       }
       
       wx.hideLoading()
@@ -80,63 +97,78 @@ Page({
 
   // 没有记住
   handleNo() {
-    const disabledMathMap = wx.getStorageSync("disabledMathMap") || [];
-    wx.setStorageSync(
-      "disabledMathMap",
-      disabledMathMap.concat(this.data.formula.id)
-    );
+    const formulaId = this.data.formula.id;
+    const formulaType = this.data.formula.type;
+    const userProgress = wx.getStorageSync("userProgress") || {};
+    const typeKey = `type_${formulaType}`;
+
+    // 如果对应 type 的数组存在且包含 formulaId，则删除
+    if (userProgress[typeKey] && userProgress[typeKey].includes(formulaId)) {
+        userProgress[typeKey] = userProgress[typeKey].filter(id => id !== formulaId);
+        wx.setStorageSync('userProgress', userProgress);
+    }
+
+    // 设置需要更多练习的状态
+    this.setData({
+        needMorePractice: true,
+    });
+
+    // 显示答案
     this.handleShowAnswer();
   },
   handleYes() {
-    this.setData({
-      showAnswer: true,
-    });
+    const formulaId = this.data.formula.id;
+    const formulaType = this.data.formula.type;
+    const userProgress = wx.getStorageSync("userProgress") || {} ;
+    const typeKey = `type_${formulaType}`;
+    
+    // 初始化对应 type 的数组（如果不存在）
+    if (!userProgress[typeKey]) {
+      userProgress[typeKey] = [];
+    }
+
+    // 如果 formulaId 不存在于数组中，则添加
+    if (!userProgress[typeKey].includes(formulaId)) {
+      userProgress[typeKey].push(formulaId);
+    }
+    wx.setStorageSync('userProgress', userProgress);
     this.handleShowAnswer();
   },
   handleNext(event) {
+    this.setData({
+        needMorePractice: false,
+    });
     const param = event.currentTarget.dataset.param;
     if (param === "restart") {
       this.setData({
-        currentIndex: 0,
-        formula: this.data.formulaMap[0],
         showAnswer: false,
-        subName: this.data.formulaMap[0].subName
-          ? parse(this.data.formulaMap[0].subName, {
-              throwError: true,
-              ...katexOption,
-            })
-          : "",
-        description: this.data.formulaMap[0].description
-          ? parse(this.data.formulaMap[0].description, {
-              throwError: true,
-              ...katexOption,
-            })
-          : "",
-        finish: false, // 重置完成状态
-      });
-    } else {
-    if (this.data.currentIndex < this.data.formulaMap.length - 1) {
-      const tempIndex = this.data.currentIndex + 1;
-      this.setData({
-        currentIndex: tempIndex,
-        formula: this.data.formulaMap[tempIndex],
-        showAnswer: false,
-        subName: this.data.formulaMap[tempIndex].subName ? parse(this.data.formulaMap[tempIndex].subName, {
-          throwError: true,
-          ...katexOption,
-        }) : '',
-        description:this.data.formulaMap[tempIndex].description ? parse(this.data.formulaMap[tempIndex].description, {
-          throwError: true,
-       
-          ...katexOption,
-        }) : '',
         finish: false
-      });
-    }else{
+      })
+      this.getData();
+    } else {
+      if (this.data.currentIndex < this.data.formulaMap.length - 1) {
+        const tempIndex = this.data.currentIndex + 1;
         this.setData({
-            finish: true
+          currentIndex: tempIndex,
+          formula: this.data.formulaMap[tempIndex],
+          showAnswer: false,
+          subName: this.data.formulaMap[tempIndex].subName ? parse(this.data.formulaMap[tempIndex].subName, {
+            throwError: true,
+            ...katexOption,
+          }) : '',
+          description:this.data.formulaMap[tempIndex].description ? parse(this.data.formulaMap[tempIndex].description, {
+            throwError: true,
+        
+            ...katexOption,
+          }) : '',
+          finish: false
         });
-    }}
+      }else{
+          this.setData({
+              finish: true
+          });
+      }
+    }
   },
 
   /**
@@ -144,8 +176,10 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      onlyfavorite: options.onlyfavorite 
+      onlyfavorite: options.onlyfavorite,
+      type: options.type
     })
+
   },
 
   /**

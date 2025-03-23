@@ -2,7 +2,7 @@
 <scroll-view scroll-y>
     <view class="container">
         <view class="chapter-list">
-            <view class="chapter-item" wx:for="{{chapters}}" wx:key="index" bindtap="onChapterTap" data-index="{{index}}">
+            <view class="chapter-item" wx:for="{{chapters}}" wx:key="index" bindtap="onChapterTap" data-progress="{{item.progress}}" data-type="{{item.type}}">
                 <view class="left-content">
                     <view class="chapter-title">{{item.title}}</view>
                     <view class="progress-container">
@@ -12,7 +12,7 @@
                         <text class="progress-text">{{item.progress}}%</text>
                     </view>
                 </view>
-                <button class="test-button" type="primary" size="mini" bindtap="defaultTap" hover-class="button-hover">去检测</button>
+                <button class="test-button" type="primary" size="mini" hover-class="button-hover">{{item.progress === 100 ? '重头来' : '去检测'}}</button>
             </view>
         </view>
     </view>

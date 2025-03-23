@@ -1,14 +1,4 @@
 <!--index.wxml-->
-<!-- <view class="container">
-  云开发基础
-  <button type="primary" bindtap="getOpenId">点击登录</button>
-  <button type="primary" bindtap="addData">添加数据</button>
-  <form bindsubmit="btnSub">
-    <input type="text" name="phone" placeholder="请输入手机号"></input>
-    <button type="primary" form-type="submit">提交</button>
-  </form>
-</view>
-<view> -->
  <scroll-view class="scrollarea" scroll-y type="list">
   <view class="container">
     <header userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}"></header>
@@ -17,12 +7,12 @@
       <view class="cotent-text">
         <view class="header-banner-left" bindtap="goChapter">
           学习天数
-						<view class="stat-value">1<text class="small-text">天</text></view>
+						<view class="stat-value">{{totalStudyDays}}<text class="small-text">天</text></view>
             <!-- <image class="freeimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/自由动态.png" ></image> -->
         </view>    
         <view class="header-banner-right">
           整体进度
-						<view class="stat-value">60<text class="small-text">%</text></view>
+						<view class="stat-value">{{totalProgress}}<text class="small-text">%</text></view>
             <!-- <image class="chooseimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/选择.png" ></image> -->
         </view>
       </view>
@@ -31,9 +21,9 @@
       <view class="check-in" bindtap="goStuday" data-param="1">
         <image class="card-left-img" mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/bg-left.png" ></image>
          <view class="content-left">
-          <view class="card-title">公式自测</view>
+          <view class="card-title">按章节自测</view>
           <view>
-          全部公式打卡模式自测
+            选择章节模块自测
           </view>
         </view>
       </view>

@@ -24,6 +24,12 @@
                 "selectedIconPath": "/images/mainSelected.png"
             },
             {
+                "pagePath": "pages/quit/quit",
+                "text": "快速测试",
+                "iconPath": "/images/start.png",
+                "selectedIconPath": "/images/startSelected.png"
+            },
+            {
                 "pagePath": "pages/list/list",
                 "text": "公式列表",
                 "iconPath": "/images/require.png",
