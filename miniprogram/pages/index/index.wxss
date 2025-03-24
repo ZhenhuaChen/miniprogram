@@ -112,3 +112,15 @@ header {
 .small-text {
   font-size: 12px;
 }
+.all-formula-test {
+  width: 95vw;
+  margin: 20px auto; 
+  padding: 20px 0;
+  background: linear-gradient(135deg, #a175ff, #8053ff);
+  color: white; 
+  font-size: 30rpx; 
+  font-weight: bold; 
+  text-align: center;
+  border-radius: 20px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}

@@ -56,9 +56,13 @@ Page({
       wx.navigateTo({
         url: "/pages/chapters/chapters",
       });
-    }else{
+    }else if(param === '2'){
       wx.navigateTo({
         url: "/pages/quit/quit?onlyfavorite=true",
+      });
+    }else {
+      wx.navigateTo({
+        url: "/pages/quit/quit",
       });
     }
   },

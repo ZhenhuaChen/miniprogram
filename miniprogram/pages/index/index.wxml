@@ -35,6 +35,10 @@
         </view>
       </view>   
     </view>
+    <!-- 全部公式自测 -->
+    <view class="all-formula-test" bindtap="goStuday" data-param="3">
+      <view class="test-title">全部公式自测</view>
+    </view>
   </view>
 </scroll-view>
 

@@ -26,7 +26,7 @@
          
       </view>
     </view>
-    <view wx:if="{{onlyfavorite}}">
+    <view wx:if="{{onlyfavorite && !formula.subName}}">
         <view class="tip">
             <text class="tip-text">你还没有收藏公式</text>
             <text class="tip-text">快去收藏吧</text>
