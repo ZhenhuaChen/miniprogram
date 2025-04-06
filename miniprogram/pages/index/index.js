@@ -85,17 +85,18 @@ Page({
         hasUserInfo: true
       })
     }
+    const todayDate = this.getCurrentDate(); // 当前日期
+    let lastStudy = wx.getStorageSync('lastStudy') || { date: todayDate, studyDays: 1 }; // 获取缓存数据，默认为空
+
+    if (lastStudy.date !== todayDate) {
+      lastStudy.date = todayDate;
+      lastStudy.studyDays += 1;
+      wx.setStorageSync('lastStudy', {
+        date: todayDate,
+        studyDays: lastStudy.studyDays + 1
+      });
+    }
     if(!this.data.openId){
-      const todayDate = this.getCurrentDate(); // 当前日期
-      let lastStudy = wx.getStorageSync('lastStudy') || { date: todayDate, studyDays: 1 }; // 获取缓存数据，默认为空
-
-      if (lastStudy.date !== todayDate) {
-        lastStudy.date = todayDate;
-        lastStudy.studyDays += 1;
-        wx.setStorageSync('lastStudy', lastStudy);
-      }
-
-      
       wx.showLoading({
         title:'登录中'
       });
