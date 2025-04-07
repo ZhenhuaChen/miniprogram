@@ -94,8 +94,14 @@ Page({
       wx.setStorageSync('lastStudy', {
         date: todayDate,
         studyDays: lastStudy.studyDays + 1
+      })
+    }else{
+      wx.setStorageSync('lastStudy', {
+        date: todayDate,
+        studyDays:lastStudy.studyDays
       });
     }
+   
     if(!this.data.openId){
       wx.showLoading({
         title:'登录中'

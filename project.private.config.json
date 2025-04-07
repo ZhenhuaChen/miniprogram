@@ -6,6 +6,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "db guide",
                     "pathName": "pages/databaseGuide/databaseGuide",
                     "query": ""

@@ -3,7 +3,8 @@
         "pages/index/index",
         "pages/quit/quit",
         "pages/list/list",
-        "pages/chapters/chapters"
+        "pages/chapters/chapters",
+        "pages/findMe/find-me"
     ],
     "window": {
         "backgroundColor": "#e6eef5",
@@ -28,6 +29,12 @@
                 "text": "公式列表",
                 "iconPath": "/images/require.png",
                 "selectedIconPath": "/images/requireSelected.png"
+            },
+            {
+                "pagePath": "pages/findMe/find-me",
+                "text": "联系我",
+                "iconPath": "/images/start.png",
+                "selectedIconPath": "/images/startSelected.png"
             }
         ]
     },
