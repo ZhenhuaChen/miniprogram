@@ -17,27 +17,25 @@
         </view>
       </view>
     </view>
-    <view class="content-main">
-      <view class="check-in" bindtap="goStuday" data-param="1">
-        <image class="card-left-img" mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/bg-left.png" ></image>
-         <view class="content-left">
-          <view class="card-title">按章节自测</view>
-          <view>
-            选择章节模块自测
-          </view>
-        </view>
-      </view>
-      <view class="recite" bindtap="goStuday" data-param="2">
-        <image class="card-right-img" mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/bg-right.png"></image>
-        <view class="content-right">
-          <view class="card-title">自测收藏</view>
-          <view>从公式列表中点击收藏，在这里测试</view>
-        </view>
-      </view>   
+
+  </view>
+  <view class="group-408">
+    <view class="group-title high-math-title">高数</view>
+    <view class="module-list">
+      <view class="module-item" bindtap="goStuday" data-param="1">按章节自测</view>
+      <view class="module-item" bindtap="goStuday" data-param="2">自测收藏</view>
+      <view class="module-item" bindtap="goStuday" data-param="3">全部公式自测</view>
     </view>
-    <!-- 全部公式自测 -->
-    <view class="all-formula-test" bindtap="goStuday" data-param="3">
-      <view class="test-title">全部公式自测</view>
+  </view>
+  <view class="group-408">
+    <view class="cs-408-title">
+      <span>408计算机</span>
+    </view>
+    <view class="module-list">
+      <view class="module-item" bindtap="goSubject" data-subject="组成原理">计算机组成原理</view>
+      <view class="module-item" bindtap="goSubject" data-subject="数据结构">数据结构</view>
+      <view class="module-item" bindtap="goSubject" data-subject="操作系统">操作系统</view>
+      <view class="module-item" bindtap="goSubject" data-subject="计算机网络">计算机网络</view>
     </view>
   </view>
 </scroll-view>
