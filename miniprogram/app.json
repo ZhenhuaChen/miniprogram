@@ -4,7 +4,8 @@
         "pages/quit/quit",
         "pages/list/list",
         "pages/chapters/chapters",
-        "pages/findMe/find-me"
+        "pages/findMe/find-me",
+        "pages/computer/computer"
     ],
     "window": {
         "backgroundColor": "#e6eef5",

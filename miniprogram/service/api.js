@@ -53,3 +53,7 @@ async function getCollectionData(collectionName, options = {}) {
 exports.getMathBaseData = async (onlyfavorite, type) => {
   return await getCollectionData('math2', {'onlyfavorite': onlyfavorite, type: type});
 };
+
+exports.getComputerData = async (type) => {
+  return await getCollectionData(type);
+}

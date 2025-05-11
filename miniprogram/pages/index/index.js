@@ -66,6 +66,13 @@ Page({
       });
     }
   },
+  goSubject: function(event) {
+    const param = event.currentTarget.dataset.subject;
+    console.log(param,'ooooo')
+    wx.navigateTo({
+      url: `/pages/computer/computer?subject=${param}`,
+    });
+  },
   goChapter: function(event) {
     wx.navigateTo({
       url: "/pages/chapters/chapters",
