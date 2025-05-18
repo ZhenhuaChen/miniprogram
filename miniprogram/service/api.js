@@ -57,3 +57,7 @@ exports.getMathBaseData = async (onlyfavorite, type) => {
 exports.getComputerData = async (type) => {
   return await getCollectionData(type);
 }
+
+exports.getXianDaiData = async (onlyfavorite, type) => {
+  return await getCollectionData('xiandai', {'onlyfavorite': onlyfavorite, type: type});
+}

@@ -2,7 +2,7 @@
 <scroll-view scroll-y>
     <view class="container">
         <view class="chapter-list">
-            <view class="chapter-item" wx:for="{{chapters}}" wx:key="index" bindtap="onChapterTap" data-progress="{{item.progress}}" data-type="{{item.type}}">
+            <view class="chapter-item" wx:for="{{targetChapters}}" wx:key="index" bindtap="onChapterTap" data-progress="{{item.progress}}" data-type="{{item.type}}">
                 <view class="left-content">
                     <view class="chapter-title">{{item.title}}</view>
                     <view class="progress-container">

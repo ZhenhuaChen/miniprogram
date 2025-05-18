@@ -60,10 +60,18 @@ Page({
       wx.navigateTo({
         url: "/pages/quit/quit?onlyfavorite=true",
       });
-    }else {
+    }else if (param === '3'){
       wx.navigateTo({
         url: "/pages/quit/quit",
       });
+    }else if(param === '4'){
+       wx.navigateTo({
+        url: "/pages/chapters/chapters?cate=xiandai",
+      }) 
+     }else if(param === '5'){
+       wx.navigateTo({
+        url: "/pages/xiandai/xiandai",
+      }) 
     }
   },
   goSubject: function(event) {
@@ -100,7 +108,7 @@ Page({
       lastStudy.studyDays += 1;
       wx.setStorageSync('lastStudy', {
         date: todayDate,
-        studyDays: lastStudy.studyDays + 1
+        studyDays: lastStudgoStudayy.studyDays + 1
       })
     }else{
       wx.setStorageSync('lastStudy', {

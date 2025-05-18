@@ -5,7 +5,8 @@
         "pages/list/list",
         "pages/chapters/chapters",
         "pages/findMe/find-me",
-        "pages/computer/computer"
+        "pages/computer/computer",
+        "pages/xiandai/xiandai"
     ],
     "window": {
         "backgroundColor": "#e6eef5",

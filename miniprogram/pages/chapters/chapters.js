@@ -5,7 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        chapters:[{
+        mathChapters:[{
             title: '极限公式',
             total: 6,
             progress: 0,
@@ -155,7 +155,33 @@ Page({
             progress: 0,
             type: 25
         }
-        ]
+        ],
+        xdChapters: [{
+            title: '行列式',
+            total: 13,
+            progress: 0,
+            type: 101
+        },
+        {
+            title: '矩阵',
+            total: 56,
+            progress: 0,
+            type: 102
+        },
+        {
+            title: '向量组',
+            total: 26,
+            progress: 0,
+            type: 103
+        },
+         {
+            title: '线性方程组',
+            total: 34,
+            progress: 0,
+            type: 105
+        }
+        ],
+        targetChapters: [],
 
     },
 
@@ -163,20 +189,32 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        console.log(options.cate, 'dddd')
+        this.setData({
+            cate: options.cate,
+            targetChapters: options.cate === 'xiandai' ? this.data.xdChapters : this.data.mathChapters,
+            storageKey: options.cate === 'xiandai' ? 'userXDProgress' : 'userProgress',
+        })
     },
     onChapterTap(e){
+        const storageKey = this.data.storageKey;
         const {type,progress} = e.currentTarget.dataset
         if(progress >= 100){
             // 如果进程已经完成，删除缓存中的对应type的数据
-            wx.setStorageSync('userProgress', {
-                ...wx.getStorageSync('userProgress'),
+            wx.setStorageSync(storageKey, {
+                ...wx.getStorageSync(storageKey),
                 [`type_${type}`]: []
             });
         }
-        wx.navigateTo({
-            url: `/pages/quit/quit?type=${type}`,
-        });
+        if(this.data.cate === 'xiandai'){
+            wx.navigateTo({
+                url: `/pages/xiandai/xiandai?type=${type}`,
+            });
+        }else{
+            wx.navigateTo({
+                url: `/pages/quit/quit?type=${type}`,
+            });
+        }
     },
 
     /**
@@ -190,26 +228,27 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        const knownFormulas = wx.getStorageSync('userProgress') || {};
+        console.log('章节数据', this.data.storageKey);
+        const knownFormulas =  wx.getStorageSync(this.data.storageKey) || {}; 
         const progress = {};
 
         for (const type in knownFormulas) {
             const knownCount = knownFormulas[type].length; // 当前 type 已掌握的公式数量
 
-            const totalCount = this.data.chapters.find((item) => item.type == type.split('_')[1])?.total || 0;
+            const totalCount = this.data.targetChapters.find((item) => item.type == type.split('_')[1])?.total || 0;
 
             const percentage = parseInt((knownCount / totalCount) * 100);
             progress[type] = percentage; // 存储当前 type 的掌握进度
 
-            const chapterIndex = this.data.chapters.findIndex((item) => item.type == type.split('_')[1]);
+            const chapterIndex = this.data.targetChapters.findIndex((item) => item.type == type.split('_')[1]);
             if (chapterIndex !== -1) {
-                this.data.chapters[chapterIndex].progress = percentage;
+                this.data.targetChapters[chapterIndex].progress = percentage;
             }
         }
 
         // 更新页面数据
         this.setData({
-            chapters: this.data.chapters
+            targetChapters: this.data.targetChapters
         });
 
         console.log('掌握进度', progress);

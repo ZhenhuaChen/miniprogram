@@ -1,0 +1,112 @@
+/* pages/xiandai/xiandai.wxss */
+/* pages/quit/quit.wxss */
+@import "../../miniprogram_npm/@rojer/katex-mini/index.wxss";
+.quit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100rpx;
+}
+.quit-content{
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+}
+.quit-option{
+    display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 400rpx;
+
+}
+.quit-no, .quit-yes {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 10px;
+    box-shadow: 5rpx 5rpx 5rpx rgba(0, 0, 0, .1);
+    background-color: #F0F0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quit-no {
+    color: #FF7043;
+}
+.quit-yes {
+    color: #4CAF50;
+}
+.quit-answer-wrap{
+    margin-top: 100rpx;
+    text-align: center;
+}
+.quot-answer-content{
+    width: 80vw;
+    overflow: scroll;
+}
+.quit-answer{
+    font-size: 42rpx;
+    color: #9C27B0;
+}
+.quit-bottom {
+    margin-top: 200rpx;
+}
+.quit-need-more-practice{
+    font-size: 30rpx;
+    margin-left:30rpx;
+    margin-bottom: 20rpx;
+    color: #999999;
+    display: flex;
+    align-items: center;
+}
+icon {
+    margin-right: 5rpx;
+}
+.quit-next{
+    width: 80vw;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 40rpx;
+    background-color: #9C27B0;
+    color: #ffffff;
+    text-align: center;
+}
+.ansser-img{
+    width: 200rpx;
+    height: auto;
+}
+.quit-question{
+    width: 80vw;
+    overflow: scroll;
+    font-size: 30rpx;
+}
+.tip {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tip-text {
+    display: block;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.button {
+    background-color: #9C27B0;
+    padding: 12px 24px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.button:active {
+    background-color: #450183;
+}
+
+.button-text {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
