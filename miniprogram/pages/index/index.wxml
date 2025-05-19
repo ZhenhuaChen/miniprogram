@@ -33,17 +33,17 @@
     </view>
     
   </view>
-  <view class="group-408">
+  <!-- <view class="group-408">
     <view class="cs-408-title">
       <span>408计算机</span>
     </view>
     <view class="module-list">
       <view class="module-item" bindtap="goSubject" data-subject="组成原理">计算机组成原理</view>
-      <!-- <view class="module-item" bindtap="goSubject" data-subject="数据结构">数据结构</view>
+      <view class="module-item" bindtap="goSubject" data-subject="数据结构">数据结构</view>
       <view class="module-item" bindtap="goSubject" data-subject="操作系统">操作系统</view>
-      <view class="module-item" bindtap="goSubject" data-subject="计算机网络">计算机网络</view> -->
+      <view class="module-item" bindtap="goSubject" data-subject="计算机网络">计算机网络</view>
     </view>
-  </view>
+  </view> -->
 </scroll-view>
 
 <!-- </view> -->
