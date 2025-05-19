@@ -108,7 +108,7 @@ Page({
       lastStudy.studyDays += 1;
       wx.setStorageSync('lastStudy', {
         date: todayDate,
-        studyDays: lastStudgoStudayy.studyDays + 1
+        studyDays: lastStudy.studyDays + 1
       })
     }else{
       wx.setStorageSync('lastStudy', {
