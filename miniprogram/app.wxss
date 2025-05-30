@@ -1,3 +1,5 @@
+@import "./miniprogram_npm/@rojer/katex-mini/index.wxss";
+
 .container {
   display: flex;
   flex-direction: column;
