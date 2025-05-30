@@ -3,7 +3,7 @@ import parse from "@rojer/katex-mini";
 import { getXianDaiData } from "../../service/api";
 const app = getApp();
 const katexOption = {
-  displayMode: true,
+  throwError: true,
 };
 Page({
   /**
@@ -46,10 +46,7 @@ Page({
           that.setData({
             formulaMap: resultData.length > 0 ? resultData : data,
             formula: currentFormula,
-            subName: currentFormula.subName ? parse(currentFormula.subName, {
-              throwError: true,
-              ...katexOption,
-            }) : '',
+            subName: currentFormula.subName ? parse(currentFormula.subName, katexOption) : '',
             remainIndex: itemIndex,
             currentIndex: itemIndex,
           });
@@ -58,10 +55,7 @@ Page({
           that.setData({
             formulaMap: data,
             formula: currentFormula,
-            subName: currentFormula.subName ? parse(currentFormula.subName, {
-              throwError: true,
-              ...katexOption,
-            }) : '',
+            subName: currentFormula.subName ? parse(currentFormula.subName, katexOption) : '',
             remainIndex: itemIndex,
             currentIndex: itemIndex,
           });
@@ -81,10 +75,7 @@ Page({
   handleShowAnswer() {
     this.setData({
       showAnswer: true,
-      nodes: parse(this.data.formula.formula, {
-        throwError: true,
-        ...katexOption,
-      }),
+      nodes: parse(this.data.formula.formula, katexOption),
     });
   },
 
@@ -151,15 +142,8 @@ Page({
           currentIndex: tempIndex,
           formula: this.data.formulaMap[tempIndex],
           showAnswer: false,
-          subName: this.data.formulaMap[tempIndex].subName ? parse(this.data.formulaMap[tempIndex].subName, {
-            throwError: true,
-            ...katexOption,
-          }) : '',
-          description:this.data.formulaMap[tempIndex].description ? parse(this.data.formulaMap[tempIndex].description, {
-            throwError: true,
-        
-            ...katexOption,
-          }) : '',
+          subName: this.data.formulaMap[tempIndex].subName ? parse(this.data.formulaMap[tempIndex].subName, katexOption) : '',
+          description:this.data.formulaMap[tempIndex].description ? parse(this.data.formulaMap[tempIndex].description, katexOption) : '',
           finish: false
         });
       }else{

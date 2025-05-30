@@ -1,5 +1,4 @@
 /* 页面容器 */
-@import "../../miniprogram_npm/@rojer/katex-mini/index.wxss";
 .container {
     padding: 16px;
     background-color: #f5f5f5; /* 浅灰色背景 */
