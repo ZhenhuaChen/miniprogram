@@ -54,6 +54,7 @@
   .formula-content {
     width: 80vw;
     overflow-x: scroll;
+    text-align: center;
     margin-top: 8px;
     font-size: 14px;
     color: #333;

@@ -79,6 +79,9 @@ icon {
     overflow: scroll;
     font-size: 30rpx;
 }
+.quit-question-title{
+    text-align: center;
+}
 .tip {
     text-align: center;
     margin-bottom: 40px;

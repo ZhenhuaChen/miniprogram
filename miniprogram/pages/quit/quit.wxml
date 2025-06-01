@@ -2,7 +2,7 @@
 <view class="quit">
     <view class="quit-content" wx:if="{{formula.name}}">
       <view>{{formula.name}}</view>
-        <view wx:if="{{formula.subName}}" class="quit-question">
+        <view wx:if="{{formula.subName}}" class="quit-question quit-question-title">
             <rich-text  nodes="{{subName}}"></rich-text>
         </view>
         <view class="quit-option" wx:if="{{!showAnswer}}">
