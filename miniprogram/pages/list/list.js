@@ -1,7 +1,7 @@
 import parse from "@rojer/katex-mini";
 
 const katexOption = {
-  displayMode: true,
+  throwError: true,
 };
 Page({
   data: {
@@ -71,10 +71,7 @@ Page({
   // 解析 LaTeX 公式
   parseLaTeX(latex) {
     try {
-      return parse(latex, {
-        throwError: true,
-        ...katexOption,
-      });
+      return parse(latex, katexOption);
     } catch (err) {
       console.error("LaTeX 解析失败", err);
       return latex; // 解析失败时返回原始 LaTeX

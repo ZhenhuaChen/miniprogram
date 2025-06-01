@@ -1,5 +1,4 @@
 /* pages/quit/quit.wxss */
-@import "../../miniprogram_npm/@rojer/katex-mini/index.wxss";
 .quit{
     display: flex;
     flex-direction: column;
