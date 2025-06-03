@@ -130,6 +130,10 @@ Page({
     });
     const param = event.currentTarget.dataset.param;
     if (param === "restart") {
+      wx.setStorageSync('userXDProgress', {
+        ...wx.getStorageSync('userXDProgress'),
+        [`type_${this.data.type}`]: []
+      });
       this.setData({
         showAnswer: false,
         finish: false
