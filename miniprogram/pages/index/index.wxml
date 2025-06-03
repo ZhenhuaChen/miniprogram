@@ -16,6 +16,19 @@
             <!-- <image class="chooseimg"  mode="aspectFit" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/选择.png" ></image> -->
         </view>
       </view>
+      
+      <!-- 数据同步状态 -->
+      <view class="sync-status">
+        <view class="sync-info">
+          <text class="sync-label">同步状态：</text>
+          <text class="sync-text">{{syncStatus}}</text>
+        </view>
+        <view class="sync-buttons">
+          <button class="sync-btn" size="mini" bindtap="syncData">手动同步</button>
+          <button class="sync-btn restore-btn" size="mini" bindtap="restoreData">恢复数据</button>
+          <button class="sync-btn merge-btn" size="mini" bindtap="mergeData">合并数据</button>
+        </view>
+      </view>
     </view>
 
   </view>

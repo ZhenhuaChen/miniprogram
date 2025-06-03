@@ -1,4 +1,5 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
+const DataManager = require('../../utils/dataManager');
 const app = getApp();
 Page({
 
@@ -13,7 +14,10 @@ Page({
     hasUserInfo: false,
     remainDays: 1,
     totalProgress: 0,
-    openId:''
+    openId: '',
+    totalStudyDays: 1,
+    lastSyncTime: null,
+    syncStatus: '未同步' // 同步状态显示
   },
   
   getRemainData(){
@@ -30,24 +34,92 @@ Page({
     const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     return daysDifference;
   },
+
   getProgress(){
-    const userProgress = wx.getStorageSync('userProgress') || {};
-    const formulaIdSet = new Set();
-    for (const type in userProgress) {
-      if (Array.isArray(userProgress[type])) {
-        userProgress[type].forEach(id => formulaIdSet.add(id));
-      }
-    }
-    if(formulaIdSet.size) {
-      return parseInt((formulaIdSet.size / 112) * 100)
-    }else{
-      return 0
+    return DataManager.calculateTotalProgress({
+      math: DataManager.getStorage('userProgress', {}),
+      xiandai: DataManager.getStorage('userXDProgress', {})
+    });
+  },
+
+  // 手动同步数据
+  async syncData() {
+    const result = await DataManager.syncToCloud(true);
+    if (result.success) {
+      this.updateSyncStatus();
     }
   },
-  // 获取当前日期（格式：YYYY-MM-DD）
-  getCurrentDate() {
-    const date = new Date();
-    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+  // 恢复云端数据
+  async restoreData() {
+    wx.showModal({
+      title: '确认恢复',
+      content: '从云端恢复数据会覆盖本地数据，确定继续吗？',
+      success: async (res) => {
+        if (res.confirm) {
+          const result = await DataManager.restoreFromCloud(true);
+          if (result.success) {
+            this.updateProgress();
+            this.updateSyncStatus();
+          }
+        }
+      }
+    });
+  },
+
+  // 合并数据
+  async mergeData() {
+    const result = await DataManager.mergeData(true);
+    if (result.success) {
+      this.updateProgress();
+      this.updateSyncStatus();
+    }
+  },
+
+  // 更新同步状态显示
+  updateSyncStatus() {
+    const lastSync = DataManager.getLastSyncTime();
+    if (lastSync) {
+      const now = new Date();
+      const diff = now - lastSync;
+      let syncStatus = '';
+      
+      if (diff < 60 * 1000) {
+        syncStatus = '刚刚同步';
+      } else if (diff < 60 * 60 * 1000) {
+        syncStatus = `${Math.floor(diff / (60 * 1000))}分钟前`;
+      } else if (diff < 24 * 60 * 60 * 1000) {
+        syncStatus = `${Math.floor(diff / (60 * 60 * 1000))}小时前`;
+      } else {
+        syncStatus = `${Math.floor(diff / (24 * 60 * 60 * 1000))}天前`;
+      }
+      
+      this.setData({
+        lastSyncTime: lastSync,
+        syncStatus
+      });
+    } else {
+      this.setData({
+        syncStatus: '未同步'
+      });
+    }
+  },
+
+  // 更新进度显示
+  updateProgress() {
+    this.setData({
+      totalProgress: this.getProgress()
+    });
+  },
+
+  // 更新打卡天数
+  async updateStudyDays() {
+    const studyData = await DataManager.updateStudyDays(true);
+    if (studyData) {
+      this.setData({
+        totalStudyDays: studyData.studyDays
+      });
+    }
   },
 
   goStuday: function(event) {
@@ -93,30 +165,17 @@ Page({
    */
   onLoad: function (options) {
     // 进入小程序获取缓存
-    var value = wx.getStorageSync('user')
+    var value = DataManager.getStorage('user');
     if(value){
       this.setData({
         userInfo: value,
         hasUserInfo: true
       })
     }
-    const todayDate = this.getCurrentDate(); // 当前日期
-    let lastStudy = wx.getStorageSync('lastStudy') || { date: todayDate, studyDays: 1 }; // 获取缓存数据，默认为空
 
-    if (lastStudy.date !== todayDate) {
-      lastStudy.date = todayDate;
-      lastStudy.studyDays += 1;
-      wx.setStorageSync('lastStudy', {
-        date: todayDate,
-        studyDays: lastStudy.studyDays + 1
-      })
-    }else{
-      wx.setStorageSync('lastStudy', {
-        date: todayDate,
-        studyDays:lastStudy.studyDays
-      });
-    }
-   
+    // 更新打卡天数
+    this.updateStudyDays();
+    
     if(!this.data.openId){
       wx.showLoading({
         title:'登录中'
@@ -126,20 +185,32 @@ Page({
         data:{
           type:'getOpenId'
         },
-        success:res=>{
+        success: res => {
           this.setData({
-            havsGetOpenId:true,
-            openId:res.result.openId,
-            totalStudyDays: lastStudy.studyDays
-          })
-          wx.hideLoading()
+            hasGetOpenId: true,
+            openId: res.result.openid
+          });
+          wx.hideLoading();
+          
+          // 登录成功后，检查是否需要同步数据
+          this.checkAndSync();
         },
-        fail:err=>{
-          console.log(err,'失败')
+        fail: err => {
+          console.log(err,'失败');
+          wx.hideLoading();
         }
       })
     }
-   
+  },
+
+  // 检查并执行自动同步
+  async checkAndSync() {
+    if (DataManager.needsSync()) {
+      // 智能合并数据，避免数据丢失
+      await DataManager.mergeData();
+      this.updateProgress();
+    }
+    this.updateSyncStatus();
   },
 
   /**
@@ -154,10 +225,10 @@ Page({
    */
   onShow: function () {
     this.setData({
-      remainDays: this.getRemainData(),
-      totalProgress: this.getProgress()
-    })
-    
+      remainDays: this.getRemainData()
+    });
+    this.updateProgress();
+    this.updateSyncStatus();
   },
 
   /**
@@ -178,7 +249,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    // 下拉刷新时同步数据
+    this.checkAndSync().then(() => {
+      wx.stopPullDownRefresh();
+    });
   },
 
   /**

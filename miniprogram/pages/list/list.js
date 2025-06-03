@@ -1,4 +1,5 @@
 import parse from "@rojer/katex-mini";
+const DataManager = require('../../utils/dataManager');
 
 const katexOption = {
   throwError: true,
@@ -16,7 +17,7 @@ Page({
 
   onLoad() {
     // 从本地存储中获取用户收藏的 ID 列表
-    const favoriteIds = wx.getStorageSync("favoriteIds") || [];
+    const favoriteIds = DataManager.getStorage("favoriteIds", []);
     this.setData({ favoriteIds });
     // 页面加载时初始化数据
     this.loadFormulas();
@@ -111,32 +112,45 @@ Page({
   },
 
   // 切换收藏状态
-  toggleFavorite(e) {
+  async toggleFavorite(e) {
     const formulaId = e.currentTarget.dataset.id;
     let favoriteIds = this.data.favoriteIds;
+    const isFavorite = favoriteIds.includes(formulaId);
 
-    if (favoriteIds.includes(formulaId)) {
-      // 如果已经收藏，则取消收藏
-      favoriteIds = favoriteIds.filter((id) => id !== formulaId);
-    } else {
-      // 如果未收藏，则添加到收藏列表
-      favoriteIds.push(formulaId);
-    }
-
-    // 更新本地存储
-    wx.setStorageSync("favoriteIds", favoriteIds);
-
-    // 更新页面数据
-    const formulas = this.data.formulas.map((item) => {
-      if (item._id === formulaId) {
-        item.isFavorite = favoriteIds.includes(formulaId);
+    // 使用数据管理器更新收藏状态
+    const success = await DataManager.updateFavorites(formulaId, !isFavorite, true);
+    
+    if (success) {
+      // 更新本地状态
+      if (!isFavorite) {
+        favoriteIds.push(formulaId);
+      } else {
+        favoriteIds = favoriteIds.filter((id) => id !== formulaId);
       }
-      return item;
-    });
 
-    this.setData({
-      formulas: formulas,
-      favoriteIds: favoriteIds,
-    });
+      // 更新页面数据
+      const formulas = this.data.formulas.map((item) => {
+        if (item._id === formulaId) {
+          item.isFavorite = !isFavorite;
+        }
+        return item;
+      });
+
+      this.setData({
+        formulas: formulas,
+        favoriteIds: favoriteIds,
+      });
+
+      wx.showToast({
+        title: isFavorite ? '取消收藏' : '添加收藏',
+        icon: 'success',
+        duration: 1000
+      });
+    } else {
+      wx.showToast({
+        title: '操作失败',
+        icon: 'none'
+      });
+    }
   },
 });
