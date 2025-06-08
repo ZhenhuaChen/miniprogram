@@ -19,6 +19,11 @@
       <image class="icon" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/找需求.png"></image>
       <text>提需求：描述你想要的小工具</text>
     </view>
+    <view class="info-item">
+      <image class="icon" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/找需求.png"></image>
+      <text>参与项目： https://github.com/ZhenhuaChen/miniprogram</text>
+    </view>
+    
   </view>
 
   <button class="contact-btn" bindtap="copyWechat">复制公众号名称</button>
