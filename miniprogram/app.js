@@ -1,13 +1,19 @@
 // app.js
+const DataManager = require('./utils/dataManager');
+
 App({
-  globalData: {},
-  onLaunch: function () {
+  globalData: {
+    lastSyncTime: null,
+  },
+  onLaunch: async function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');
     } else {
       wx.cloud.init({
         traceUser: true,
       });
+      // 小程序启动时自动从云端拉取最新数据
+      await DataManager.mergeData();
     }
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -41,5 +47,17 @@ App({
       })
     }
     this.globalData = {};
+  },
+
+  onShow: async function () {
+    // 当小程序从后台进入前台时，检查是否需要同步
+    if (DataManager.needsSync()) {
+      await DataManager.mergeData();
+    }
+  },
+
+  onHide: async function () {
+    // 当小程序进入后台时，自动同步数据到云端
+    await DataManager.syncToCloud();
   },
 });

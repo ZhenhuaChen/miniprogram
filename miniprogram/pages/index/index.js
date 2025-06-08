@@ -16,8 +16,6 @@ Page({
     totalProgress: 0,
     openId: '',
     totalStudyDays: 1,
-    lastSyncTime: null,
-    syncStatus: '未同步' // 同步状态显示
   },
   
   getRemainData(){
@@ -40,69 +38,6 @@ Page({
       math: DataManager.getStorage('userProgress', {}),
       xiandai: DataManager.getStorage('userXDProgress', {})
     });
-  },
-
-  // 手动同步数据
-  async syncData() {
-    const result = await DataManager.syncToCloud(true);
-    if (result.success) {
-      this.updateSyncStatus();
-    }
-  },
-
-  // 恢复云端数据
-  async restoreData() {
-    wx.showModal({
-      title: '确认恢复',
-      content: '从云端恢复数据会覆盖本地数据，确定继续吗？',
-      success: async (res) => {
-        if (res.confirm) {
-          const result = await DataManager.restoreFromCloud(true);
-          if (result.success) {
-            this.updateProgress();
-            this.updateSyncStatus();
-          }
-        }
-      }
-    });
-  },
-
-  // 合并数据
-  async mergeData() {
-    const result = await DataManager.mergeData(true);
-    if (result.success) {
-      this.updateProgress();
-      this.updateSyncStatus();
-    }
-  },
-
-  // 更新同步状态显示
-  updateSyncStatus() {
-    const lastSync = DataManager.getLastSyncTime();
-    if (lastSync) {
-      const now = new Date();
-      const diff = now - lastSync;
-      let syncStatus = '';
-      
-      if (diff < 60 * 1000) {
-        syncStatus = '刚刚同步';
-      } else if (diff < 60 * 60 * 1000) {
-        syncStatus = `${Math.floor(diff / (60 * 1000))}分钟前`;
-      } else if (diff < 24 * 60 * 60 * 1000) {
-        syncStatus = `${Math.floor(diff / (60 * 60 * 1000))}小时前`;
-      } else {
-        syncStatus = `${Math.floor(diff / (24 * 60 * 60 * 1000))}天前`;
-      }
-      
-      this.setData({
-        lastSyncTime: lastSync,
-        syncStatus
-      });
-    } else {
-      this.setData({
-        syncStatus: '未同步'
-      });
-    }
   },
 
   // 更新进度显示
@@ -163,54 +98,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // 进入小程序获取缓存
-    var value = DataManager.getStorage('user');
-    if(value){
-      this.setData({
-        userInfo: value,
-        hasUserInfo: true
-      })
-    }
-
-    // 更新打卡天数
-    this.updateStudyDays();
-    
-    if(!this.data.openId){
-      wx.showLoading({
-        title:'登录中'
-      });
-      wx.cloud.callFunction({
-        name:'quickstartFunctions',
-        data:{
-          type:'getOpenId'
-        },
-        success: res => {
-          this.setData({
-            hasGetOpenId: true,
-            openId: res.result.openid
-          });
-          wx.hideLoading();
-          
-          // 登录成功后，检查是否需要同步数据
-          this.checkAndSync();
-        },
-        fail: err => {
-          console.log(err,'失败');
-          wx.hideLoading();
-        }
-      })
-    }
-  },
-
-  // 检查并执行自动同步
-  async checkAndSync() {
-    if (DataManager.needsSync()) {
-      // 智能合并数据，避免数据丢失
-      await DataManager.mergeData();
-      this.updateProgress();
-    }
-    this.updateSyncStatus();
+  onLoad: async function (options) {
+    // 页面加载时自动同步数据
+    await this.checkAndSync();
   },
 
   /**
@@ -223,12 +113,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: async function () {
     this.setData({
       remainDays: this.getRemainData()
     });
     this.updateProgress();
-    this.updateSyncStatus();
   },
 
   /**
@@ -267,5 +156,23 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  // 检查并执行自动同步
+  async checkAndSync() {
+    try {
+      // 显示同步状态
+      this.setData({ syncStatus: '同步中...' });
+      
+      if (DataManager.needsSync()) {
+        // 智能合并数据，避免数据丢失
+        await DataManager.mergeData();
+        this.updateProgress();
+      }
+      
+    } catch (error) {
+      console.error('自动同步失败:', error);
+      this.setData({ syncStatus: '同步失败' });
+    }
   }
 })

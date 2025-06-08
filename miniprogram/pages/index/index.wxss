@@ -78,20 +78,6 @@ header {
   font-size: 12px;
 }
 
-/* 数据同步状态样式 */
-.sync-status {
-  padding: 20rpx;
-  border-top: 1rpx solid #f0f0f0;
-  background-color: #fafafa;
-}
-
-.sync-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15rpx;
-}
-
 .sync-label {
   font-size: 24rpx;
   color: #666;
@@ -101,42 +87,6 @@ header {
   font-size: 24rpx;
   color: #5702a8;
   font-weight: bold;
-}
-
-.sync-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10rpx;
-}
-
-.sync-btn {
-  flex: 1;
-  font-size: 22rpx !important;
-  background-color: #5702a8 !important;
-  color: white !important;
-  border-radius: 20rpx !important;
-  border: none !important;
-  padding: 8rpx 0 !important;
-}
-
-.sync-btn:active {
-  background-color: #4a0290 !important;
-}
-
-.restore-btn {
-  background-color: #ff9800 !important;
-}
-
-.restore-btn:active {
-  background-color: #f57c00 !important;
-}
-
-.merge-btn {
-  background-color: #4caf50 !important;
-}
-
-.merge-btn:active {
-  background-color: #388e3c !important;
 }
 
 .group-408 {
