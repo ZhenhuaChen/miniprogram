@@ -25,39 +25,30 @@ Page({
   
   getData() {
     wx.showLoading()
-
-    const param = '1';
     let that = this;
-    const lastRember = that.data.onlyfavorite ? 'onlyfavoriteXDIndex' : 'XDBasecurrentIndex';
-  
-    let itemIndex = wx.getStorageSync(lastRember) || 0;
-  
     getXianDaiData(this.data.onlyfavorite, this.data.type).then((res) => {
       const data = res.data;
-      if(itemIndex >= data.length) {
-        itemIndex = 0;
-        wx.setStorageSync(lastRember, 0);
-      }
+      console.log(res.data, 'res.datashuju');
       if(res.data.length > 0) {
         const knownFormulas = wx.getStorageSync('userXDProgress') || {};
         if(this.data.type && knownFormulas[`type_${this.data.type}`]){
           const resultData = data.filter((item) => !knownFormulas[`type_${this.data.type}`].includes(item.id));
-          const currentFormula = resultData.length > 0 ? resultData[0] : data[itemIndex];
+          const currentFormula = resultData.length > 0 ? resultData[0] : data[0];
           that.setData({
             formulaMap: resultData.length > 0 ? resultData : data,
             formula: currentFormula,
             subName: currentFormula.subName ? parse(currentFormula.subName, katexOption) : '',
-            remainIndex: itemIndex,
-            currentIndex: itemIndex,
+            remainIndex: 0,
+            currentIndex:0,
           });
         }else{
-          const currentFormula = data[itemIndex];
+          const currentFormula = data[0];
           that.setData({
             formulaMap: data,
             formula: currentFormula,
             subName: currentFormula.subName ? parse(currentFormula.subName, katexOption) : '',
-            remainIndex: itemIndex,
-            currentIndex: itemIndex,
+            remainIndex: 0,
+            currentIndex: 0,
           });
         }
         
@@ -193,9 +184,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    const indexToStore = this.data.finish ? 0 : this.data.currentIndex;
-    const lastRember = this.data.onlyfavorite ? 'onlyfavoriteXDIndex' : 'XDBasecurrentIndex';
-    wx.setStorageSync(lastRember, indexToStore);
     this.setData({
       showAnswer: false
     })

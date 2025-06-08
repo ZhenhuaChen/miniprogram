@@ -83,7 +83,6 @@ Page({
   },
   goSubject: function(event) {
     const param = event.currentTarget.dataset.subject;
-    console.log(param,'ooooo')
     wx.navigateTo({
       url: `/pages/computer/computer?subject=${param}`,
     });
@@ -101,6 +100,7 @@ Page({
   onLoad: async function (options) {
     // 页面加载时自动同步数据
     await this.checkAndSync();
+    await this.updateStudyDays();
   },
 
   /**
@@ -174,5 +174,5 @@ Page({
       console.error('自动同步失败:', error);
       this.setData({ syncStatus: '同步失败' });
     }
-  }
+ }
 })

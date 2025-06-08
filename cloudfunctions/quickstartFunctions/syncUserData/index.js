@@ -157,6 +157,8 @@ function mergeUserData(localData, cloudData) {
   const mergedProgress = {};
   const localProgress = localData.studyProgress || {};
   const cloudProgress = cloudData.studyProgress || {};
+  console.log('localProgress:', localProgress);
+  console.log('cloudProgress:', cloudProgress);
   
   // 合并所有科目的学习进度
   const allSubjects = new Set([
@@ -188,6 +190,7 @@ function mergeUserData(localData, cloudData) {
   const mergedFavorites = [...new Set([...localFavorites, ...cloudFavorites])];
 
   // 学习天数：取最大值
+  console.log('2222' ,localData.studyDays , cloudData.studyDays)
   const mergedStudyDays = Math.max(
     localData.studyDays || 0,
     cloudData.studyDays || 0
