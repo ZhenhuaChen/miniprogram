@@ -174,8 +174,14 @@ Page({
             progress: 0,
             type: 103
         },
-         {
+        {
             title: '线性方程组',
+            total: 13,
+            progress: 0,
+            type: 104
+        },
+        {
+            title: '特征值与特征向量',
             total: 34,
             progress: 0,
             type: 105
