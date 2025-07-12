@@ -22,6 +22,9 @@
           </view>
             <view class="quit-next" bindtap="handleNext" wx:if="{{!finish}}">下一个</view>
             <view class="quit-next" bindtap="handleNext" data-param="restart"  wx:else>从头开始</view>
+            <view class="quit-favorite-btn" bindtap="toggleFavorite">
+              <text>{{isFavorite ? '取消收藏' : '收藏公式'}}</text>
+            </view>
           </view>
          
       </view>

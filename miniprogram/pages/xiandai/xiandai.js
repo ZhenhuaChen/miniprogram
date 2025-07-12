@@ -1,6 +1,7 @@
 // pages/quit/quit.js
 import parse from "@rojer/katex-mini";
 import { getXianDaiData } from "../../service/api";
+const DataManager = require('../../utils/dataManager');
 const app = getApp();
 const katexOption = {
   throwError: true,
@@ -20,7 +21,8 @@ Page({
     finish: false,
     subName: '',
     description: '',
-    onlyfavorite: false
+    onlyfavorite: false,
+    isFavorite: false
   },
   
   getData() {
@@ -41,6 +43,7 @@ Page({
             remainIndex: 0,
             currentIndex:0,
           });
+          that.checkFavoriteStatus();
         }else{
           const currentFormula = data[0];
           that.setData({
@@ -50,6 +53,7 @@ Page({
             remainIndex: 0,
             currentIndex: 0,
           });
+          that.checkFavoriteStatus();
         }
         
       }
@@ -61,7 +65,38 @@ Page({
     });
   },
   
-  
+  checkFavoriteStatus() {
+    const favoriteIds = DataManager.getStorage('favoriteIds', []);
+    const isFavorite = favoriteIds.includes(this.data.formula._id);
+    this.setData({
+      isFavorite: isFavorite
+    });
+  },
+
+  async toggleFavorite() {
+    const formulaId = this.data.formula._id;
+    const currentFavoriteStatus = this.data.isFavorite;
+    
+    // 使用数据管理器更新收藏状态
+    const success = await DataManager.updateFavorites(formulaId, !currentFavoriteStatus, true);
+    
+    if (success) {
+      this.setData({
+        isFavorite: !currentFavoriteStatus
+      });
+      
+      wx.showToast({
+        title: currentFavoriteStatus ? '取消收藏' : '收藏成功',
+        icon: 'success',
+        duration: 1500
+      });
+    } else {
+      wx.showToast({
+        title: '操作失败',
+        icon: 'none'
+      });
+    }
+  },
 
   handleShowAnswer() {
     this.setData({
@@ -141,6 +176,7 @@ Page({
           description:this.data.formulaMap[tempIndex].description ? parse(this.data.formulaMap[tempIndex].description, katexOption) : '',
           finish: false
         });
+        this.checkFavoriteStatus();
       }else{
           this.setData({
               finish: true

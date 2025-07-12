@@ -60,6 +60,15 @@
 icon {
     margin-right: 5rpx;
 }
+.quit-favorite-btn{
+    width: 80vw;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #333333;
+    text-align: center;
+    font-size: 30rpx;
+    text-decoration: underline;
+}
 .quit-next{
     width: 80vw;
     height: 80rpx;

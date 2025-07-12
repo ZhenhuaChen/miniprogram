@@ -6,7 +6,8 @@
         "pages/chapters/chapters",
         "pages/findMe/find-me",
         "pages/computer/computer",
-        "pages/xiandai/xiandai"
+        "pages/xiandai/xiandai",
+        "pages/favorites/favorites"
     ],
     "window": {
         "backgroundColor": "#e6eef5",
@@ -33,10 +34,16 @@
                 "selectedIconPath": "/images/requireSelected.png"
             },
             {
-                "pagePath": "pages/findMe/find-me",
-                "text": "联系我",
+                "pagePath": "pages/favorites/favorites",
+                "text": "我的收藏",
                 "iconPath": "/images/start.png",
                 "selectedIconPath": "/images/startSelected.png"
+            },
+            {
+                "pagePath": "pages/findMe/find-me",
+                "text": "联系我",
+                "iconPath": "/images/require.png",
+                "selectedIconPath": "/images/requireSelected.png"
             }
         ]
     },

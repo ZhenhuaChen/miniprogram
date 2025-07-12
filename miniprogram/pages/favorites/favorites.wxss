@@ -1,0 +1,142 @@
+/* pages/favorites/favorites.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f7f8f9;
+  min-height: 100vh;
+}
+
+/* 标签栏样式 */
+.tabs {
+  display: flex;
+  background-color: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  padding: 8rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 6rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.tab-item.active {
+  background-color: #5702a8;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 150rpx 40rpx;
+}
+
+.empty-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 40rpx;
+}
+
+.empty-text {
+  display: block;
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.empty-hint {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 收藏列表 */
+.favorite-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20rpx;
+}
+
+.favorite-item {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 公式信息 */
+.formula-info {
+  margin-bottom: 30rpx;
+}
+
+.formula-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.formula-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.formula-type {
+  font-size: 24rpx;
+  color: #9C27B0;
+  background-color: #F3E5F5;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.formula-content {
+  margin-bottom: 20rpx;
+  overflow: scroll;
+  font-size: 30rpx;
+  color: #9C27B0;
+}
+
+.formula-subtitle {
+  font-size: 26rpx;
+  color: #666;
+  overflow: scroll;
+}
+
+/* 操作按钮 */
+.formula-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  transition: all 0.3s;
+}
+
+.unfavorite-btn {
+  background-color: #FFB74D;
+  color: #fff;
+}
+
+.unfavorite-btn:active {
+  background-color: #FF9800;
+} 

@@ -1,0 +1,52 @@
+<!--pages/favorites/favorites.wxml-->
+<view class="container">
+  <!-- 标签栏 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === item.id ? 'active' : ''}}" 
+          wx:for="{{tabs}}" 
+          wx:key="id"
+          bindtap="switchTab"
+          data-tab="{{item.id}}">
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{isEmpty && !isLoading}}">
+    <image class="empty-icon" src="cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/image/empty-box.png" mode="aspectFit"></image>
+    <text class="empty-text">还没有收藏的公式</text>
+    <text class="empty-hint">在练习中点击"收藏公式"来添加收藏</text>
+  </view>
+
+  <!-- 收藏列表 -->
+  <view class="favorite-list" wx:if="{{!isEmpty && !isLoading}}">
+    <view class="favorite-item" wx:for="{{favoriteFormulas}}" wx:key="_id">
+      <!-- 公式信息 -->
+      <view class="formula-info">
+        <view class="formula-header">
+          <text class="formula-name">{{item.name}}</text>
+          <text class="formula-type">{{item.collectionType}}</text>
+        </view>
+        <view class="formula-subtitle" wx:if="{{item.subName}}">
+          <rich-text nodes="{{item.subNameHtml}}"></rich-text>
+        </view>
+        <view class="formula-content">
+          <rich-text nodes="{{item.formulaHtml}}"></rich-text>
+        </view>
+       
+      </view>
+      <view class="formula-actions">
+        <view class="action-btn unfavorite-btn" 
+              bindtap="toggleFavorite" 
+              data-id="{{item._id}}">
+          取消收藏
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 
