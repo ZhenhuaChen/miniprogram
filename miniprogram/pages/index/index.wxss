@@ -91,7 +91,7 @@ header {
 
 .group-408 {
   width: 92%;
-  margin: 0 auto;
+  margin: 20rpx auto;
   background: #fff;
   border-radius: 20rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);

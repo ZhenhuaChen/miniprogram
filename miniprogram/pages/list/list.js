@@ -13,6 +13,11 @@ Page({
     hasMore: true, // 是否还有更多数据
     keyword: "", // 搜索关键词
     favoriteIds: [], // 用户收藏的 ID 列表
+    currentTab: 'math', // 当前选择的标签：'math' 或 'xiandai'
+    tabs: [
+      { id: 'math', name: '高数', collection: 'math2' },
+      { id: 'xiandai', name: '线代', collection: 'xiandai' }
+    ]
   },
 
   onLoad() {
@@ -23,6 +28,36 @@ Page({
     this.loadFormulas();
   },
 
+  onShow() {
+    // 每次显示页面时更新收藏状态
+    const favoriteIds = DataManager.getStorage("favoriteIds", []);
+    this.setData({ favoriteIds });
+    // 更新页面中的收藏状态
+    this.updateFavoriteStatus();
+  },
+
+  // 更新收藏状态
+  updateFavoriteStatus() {
+    const formulas = this.data.formulas.map((item) => ({
+      ...item,
+      isFavorite: this.data.favoriteIds.includes(item._id)
+    }));
+    this.setData({ formulas });
+  },
+
+  // 切换标签
+  switchTab(e) {
+    const tab = e.currentTarget.dataset.tab;
+    this.setData({
+      currentTab: tab,
+      formulas: [], // 清空当前列表
+      page: 1, // 重置页码
+      hasMore: true, // 重置是否有更多数据
+      keyword: "" // 清空搜索关键词
+    });
+    this.loadFormulas();
+  },
+
   // 从云数据库加载公式数据
   loadFormulas() {
     if (this.data.isLoading || !this.data.hasMore) return;
@@ -30,7 +65,10 @@ Page({
     this.setData({ isLoading: true });
 
     const db = wx.cloud.database();
-    const { page, pageSize, keyword } = this.data;
+    const { page, pageSize, keyword, currentTab } = this.data;
+
+    // 根据当前标签选择对应的集合
+    const currentCollection = this.data.tabs.find(tab => tab.id === currentTab)?.collection || 'math2';
 
     // 构建查询条件
     const query = {};
@@ -42,7 +80,7 @@ Page({
     }
 
     // 从云数据库获取数据
-    db.collection("math2")
+    db.collection(currentCollection)
       .where(query)
       .skip((page - 1) * pageSize) // 跳过已加载的数据
       .limit(pageSize) // 每次加载 5 条
@@ -54,6 +92,7 @@ Page({
           isFavorite: this.data.favoriteIds.includes(item._id), // 初始化收藏状态
           subNameHtml: this.parseLaTeX(item.subName),
           formulaHtml: this.parseLaTeX(item.formula), // 解析 LaTeX 公式
+          collectionType: currentTab === 'math' ? '高数' : '线代' // 添加集合类型标识
         }));
 
         // 更新公式列表
@@ -153,4 +192,17 @@ Page({
       });
     }
   },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.setData({
+      formulas: [], // 清空当前列表
+      page: 1, // 重置页码
+      hasMore: true, // 重置是否有更多数据
+    });
+    this.loadFormulas();
+    setTimeout(() => {
+      wx.stopPullDownRefresh();
+    }, 1000);
+  }
 });

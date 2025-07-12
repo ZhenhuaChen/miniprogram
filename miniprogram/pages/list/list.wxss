@@ -1,11 +1,36 @@
 /* 页面容器 */
 .container {
-    padding: 16px;
-    background-color: #f5f5f5; /* 浅灰色背景 */
+  padding: 16px;
+  background-color: #f5f5f5; /* 浅灰色背景 */
+}
+  .tabs {
+    display: flex;
+    background-color: #fff;
+    border-radius: 12rpx;
+    margin-bottom: 20rpx;
+    padding: 8rpx;
+    box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+  }
+  
+  .tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 6rpx 20rpx;
+    border-radius: 8rpx;
+    font-size: 28rpx;
+    color: #666;
+    transition: all 0.3s;
+  }
+  
+  .tab-item.active {
+    background-color: #5702a8;
+    color: #fff;
+    font-weight: bold;
   }
   
   /* 搜索栏 */
   .search-bar {
+    width: 100%;
     margin-bottom: 16px;
   }
   
@@ -39,15 +64,21 @@
     font-weight: bold;
     color: #8931dc;
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .formula-header text:first-child {
     font-size: 16px;
   }
   
-  .formula-header text:last-child {
-    font-size: 14px;
-    color: #666;
+  .formula-type {
+    font-size: 24rpx;
+    color: #9C27B0;
+    background-color: #F3E5F5;
+    padding: 8rpx 16rpx;
+    border-radius: 20rpx;
   }
   
   /* 公式内容 */

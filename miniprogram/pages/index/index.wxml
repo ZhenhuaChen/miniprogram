@@ -28,10 +28,14 @@
     <view class="group-title high-math-title">高数</view>
     <view class="module-list">
       <view class="module-item" bindtap="goStuday" data-param="1">按章节自测</view>
-      <view class="module-item" bindtap="goStuday" data-param="2">自测收藏</view>
       <view class="module-item" bindtap="goStuday" data-param="3">全部公式自测</view>
     </view>
     
+  </view>
+  <view class="group-408">
+    <view class="module-list">
+      <view class="module-item" bindtap="goStuday" data-param="2">自测收藏</view>
+    </view>
   </view>
   <!-- <view class="group-408">
     <view class="cs-408-title">

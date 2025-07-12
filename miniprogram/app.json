@@ -41,7 +41,7 @@
             },
             {
                 "pagePath": "pages/findMe/find-me",
-                "text": "联系我",
+                "text": "联系开发者",
                 "iconPath": "/images/require.png",
                 "selectedIconPath": "/images/requireSelected.png"
             }

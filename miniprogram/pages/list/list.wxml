@@ -1,7 +1,18 @@
 <view class="container">
+  <!-- 标签栏 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === item.id ? 'active' : ''}}" 
+          wx:for="{{tabs}}" 
+          wx:key="id"
+          bindtap="switchTab"
+          data-tab="{{item.id}}">
+      {{item.name}}
+    </view>
+  </view>
+
   <!-- 搜索栏 -->
   <view class="search-bar">
-    <input placeholder="请输入关键词" bindinput="onInput" />
+    <input placeholder="请输入关键词" bindinput="onInput" value="{{keyword}}" />
   </view>
 
   <!-- 公式列表 -->
@@ -11,8 +22,11 @@
         <!-- 公式标题 -->
         <view class="formula-header" bindtap="toggleMemoryMode" data-id="{{item._id}}">
           <text>{{item.name}}</text>
+          <text class="formula-type">{{item.collectionType}}</text>
         </view>
-
+        <view class="formula-content" wx:if="{{!item.hideContent && item.collectionType === '线代'}}">
+          <rich-text nodes="{{item.subNameHtml}}"></rich-text>
+        </view> 
         <!-- 公式内容 -->
         <view class="formula-content" wx:if="{{!item.hideContent}}">
           <rich-text nodes="{{item.formulaHtml}}"></rich-text>
