@@ -1,9 +1,9 @@
 <view class="container">
   <view class="form-tip">
-    数学公式展示是Latex公式，请参考：Latex公式在线编辑：
+    数学公式展示是Latex公式，请参考：Latex公式在线编辑（建议在PC端打开）：
     <text selectable="true" user-select>{{latexUrl}}</text>
     <button class="copy-btn" type="default" size="mini" bindtap="onCopyLatexUrl" plain>
-      <text class="iconfont icon-copy"></text>复制
+      复制链接
     </button>
   </view>
   <form bindsubmit="onSubmit" class="form-wrap">
@@ -37,6 +37,12 @@
       <rich-text nodes="{{formulaHtml}}"></rich-text>
       <view wx:if="{{description}}">描述：</view>
       <view>{{description}}</view>
+    </view>
+  </view>
+  <view wx:if="{{showSuccessModal}}" class="modal-mask">
+    <view class="modal-content">
+      <view class="modal-title">保存成功!在首页点击“自制公式测试”，即可测试你的自制公式</view>
+      <button class="modal-btn" type="primary" bindtap="onNextFormula">制作下一个</button>
     </view>
   </view>
 </view> 

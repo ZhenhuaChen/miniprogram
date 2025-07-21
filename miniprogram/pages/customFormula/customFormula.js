@@ -13,7 +13,8 @@ Page({
     subNameHtml: '',
     formulaHtml: '',
     canSave: false,
-    latexUrl: 'https://www.latexlive.com/'
+    latexUrl: 'https://www.latexlive.com/',
+    showSuccessModal: false
   },
   onInput(e) {
     const field = e.currentTarget.dataset.field;
@@ -93,23 +94,25 @@ Page({
         }
       });
       wx.hideLoading();
-      wx.showToast({ title: '保存成功', duration: 2000 });
-      this.setData({
-        name: '',
-        subName: '',
-        formula: '',
-        description: '',
-        showPreview: false,
-        formulaValid: false,
-        subNameValid: false,
-        formulaHtml: '',
-        subNameHtml: '',
-        canSave: false
-      });
+      this.setData({ showSuccessModal: true });
     } catch (err) {
-        console.log(err,'iiiooo');
       wx.hideLoading();
       wx.showToast({ title: '保存失败', icon: 'none' });
     }
+  },
+  onNextFormula() {
+    this.setData({
+      name: '',
+      subName: '',
+      formula: '',
+      description: '',
+      showPreview: false,
+      formulaValid: false,
+      subNameValid: false,
+      formulaHtml: '',
+      subNameHtml: '',
+      canSave: false,
+      showSuccessModal: false
+    });
   }
 }); 
