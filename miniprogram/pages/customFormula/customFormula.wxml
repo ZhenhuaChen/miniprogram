@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="form-tip">
+    数学公式展示是Latex公式，请参考：Latex公式在线编辑：
+    <text selectable="true" user-select>{{latexUrl}}</text>
+    <button class="copy-btn" type="default" size="mini" bindtap="onCopyLatexUrl" plain>
+      <text class="iconfont icon-copy"></text>复制
+    </button>
+  </view>
+  <form bindsubmit="onSubmit" class="form-wrap">
+    <view class="form-item">
+      <text>公式名称</text>
+      <input name="name" placeholder="请输入公式名称" value="{{name}}" bindinput="onInput" data-field="name" />
+    </view>
+    <view class="form-item">
+      <text>公式提问（支持LaTeX）</text>
+      <input name="subName" placeholder="请输入公式提问" value="{{subName}}" bindinput="onInput" data-field="subName" />
+    </view>
+    <view class="form-item">
+      <text>公式答案（支持LaTeX）</text>
+      <textarea name="formula" placeholder="例如：1 - cos(x) \sim \frac{x^2}{2} \quad (x \to 0)" value="{{formula}}" bindinput="onInput" data-field="formula" />
+    </view>
+    <view class="form-item">
+      <text>其它描述（可选）</text>
+      <textarea name="description" placeholder="请输入描述" value="{{description}}" bindinput="onInput" data-field="description" />
+    </view>
+    <button type="button" bindtap="onPreview">预览</button>
+    <button formType="submit" type="primary" disabled="{{!canSave}}">保存</button>
+  </form>
+  <text wx:if="{{!formulaValid || !subNameValid}}" class="error-text">公式或提问不合法，无法保存</text>
+  <view class="preview-area">
+    <view wx:if="{{showPreview}}">
+      <text>预览：</text>
+      <view>{{name}}</view>
+      <view>提问：</view>
+      <rich-text nodes="{{subNameHtml}}"></rich-text>
+      <view>答案：</view>
+      <rich-text nodes="{{formulaHtml}}"></rich-text>
+      <view wx:if="{{description}}">描述：</view>
+      <view>{{description}}</view>
+    </view>
+  </view>
+</view> 

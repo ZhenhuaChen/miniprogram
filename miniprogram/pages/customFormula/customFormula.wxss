@@ -1,0 +1,57 @@
+.form-wrap{
+    margin: auto;
+    width: 90vw;
+    font-size: 26rpx;
+}
+.form-item {
+  margin-bottom: 24rpx;
+  flex: 1;
+}
+input, textarea {
+  width: 90%;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+  padding: 12rpx;
+  font-size: 26rpx;
+  margin-top: 8rpx;
+}
+button {
+  margin-right: 16rpx;
+  margin-top: 16rpx;
+}
+.preview-area {
+  margin-top: 32rpx;
+  width: 90vw;
+  background: #f8f8f8;
+  padding: 16rpx;
+  border-radius: 8rpx;
+} 
+.form-tip {
+  font-size: 26rpx;
+  color: #8931dc;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.copy-btn {
+  margin-left: 16rpx;
+  padding: 0 12rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  border: 1px solid #8931dc;
+  color: #8931dc;
+  background: #f8f8ff;
+  border-radius: 8rpx;
+}
+.iconfont.icon-copy {
+  font-style: normal;
+  margin-right: 4rpx;
+}
+.error-text {
+  color: #e74c3c;
+  font-size: 24rpx;
+  margin: 8rpx 0 0 0;
+  display: block;
+}

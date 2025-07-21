@@ -7,7 +7,8 @@
         "pages/findMe/find-me",
         "pages/computer/computer",
         "pages/xiandai/xiandai",
-        "pages/favorites/favorites"
+        "pages/favorites/favorites",
+        "pages/customFormula/customFormula"
     ],
     "window": {
         "backgroundColor": "#e6eef5",
@@ -42,6 +43,12 @@
             {
                 "pagePath": "pages/findMe/find-me",
                 "text": "联系开发者",
+                "iconPath": "/images/require.png",
+                "selectedIconPath": "/images/requireSelected.png"
+            },
+            {
+                "pagePath": "pages/customFormula/customFormula",
+                "text": "自制公式",
                 "iconPath": "/images/require.png",
                 "selectedIconPath": "/images/requireSelected.png"
             }
