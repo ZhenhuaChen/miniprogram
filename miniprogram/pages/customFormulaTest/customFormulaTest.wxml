@@ -27,7 +27,7 @@
   <view wx:if="{{isEmpty}}" class="empty-tip">
     <text>你还没有自制公式，快去制作吧！</text>
     <view class="button" bindtap="goToDiy">
-        <text class="button-text">去收藏</text>
+        <text class="button-text">去制作</text>
     </view>
   </view>
 </view> 

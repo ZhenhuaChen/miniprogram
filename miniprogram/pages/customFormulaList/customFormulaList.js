@@ -35,12 +35,21 @@ Page({
         if (res.confirm) {
           wx.showLoading({ title: '删除中...' });
           try {
-            await wx.cloud.database().collection('customFormulas').doc(id).remove();
+            const result = await wx.cloud.callFunction({
+              name: 'quickstartFunctions',
+              data: {
+                type: 'deleteCustomFormula',
+                id
+              }
+            });
             wx.hideLoading();
-            wx.showToast({ title: '删除成功', icon: 'success' });
-            this.loadFormulas();
+            if (result.result && result.result.success) {
+              wx.showToast({ title: '删除成功', icon: 'success' });
+              this.loadFormulas();
+            } else {
+              wx.showToast({ title: result.result.error || '删除失败', icon: 'none' });
+            }
           } catch (err) {
-            console.log(err,'删除失败')
             wx.hideLoading();
             wx.showToast({ title: '删除失败', icon: 'none' });
           }
