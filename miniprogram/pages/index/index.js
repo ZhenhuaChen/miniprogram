@@ -93,7 +93,6 @@ Page({
     });
   },
   goCustomFormulaTest() {
-    console.log('点击率')
     wx.navigateTo({
       url: "/pages/customFormulaTest/customFormulaTest",
     });

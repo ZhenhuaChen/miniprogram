@@ -114,5 +114,10 @@ Page({
       canSave: false,
       showSuccessModal: false
     });
+  },
+  onGoToCustomList() {
+    wx.switchTab({
+      url: '/pages/customFormulaList/customFormulaList',
+    });
   }
 }); 

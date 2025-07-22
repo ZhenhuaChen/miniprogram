@@ -43,6 +43,7 @@
     <view class="modal-content">
       <view class="modal-title">保存成功!在首页点击“自制公式测试”，即可测试你的自制公式</view>
       <button class="modal-btn" type="primary" bindtap="onNextFormula">制作下一个</button>
+      <button class="modal-btn-back" type="default" bindtap="onGoToCustomList">返回自制公式列表</button>
     </view>
   </view>
 </view> 

@@ -14,7 +14,6 @@ Page({
     isEmpty: false
   },
   async onLoad() {
-    console.log('自制公式测试')
     wx.showLoading({ title: '加载中' });
     // 获取当前用户openid
     const { result: { openid } } = await wx.cloud.callFunction({ name: 'quickstartFunctions', data: { type: 'getOpenId' } });

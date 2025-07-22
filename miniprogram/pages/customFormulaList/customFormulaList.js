@@ -6,7 +6,7 @@ Page({
     isLoading: true,
     isEmpty: false
   },
-  async onLoad() {
+  async onShow() {
     await this.loadFormulas();
   },
   async loadFormulas() {

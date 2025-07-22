@@ -190,7 +190,6 @@ function mergeUserData(localData, cloudData) {
   const mergedFavorites = [...new Set([...localFavorites, ...cloudFavorites])];
 
   // 学习天数：取最大值
-  console.log('2222' ,localData.studyDays , cloudData.studyDays)
   const mergedStudyDays = Math.max(
     localData.studyDays || 0,
     cloudData.studyDays || 0
