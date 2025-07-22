@@ -9,7 +9,8 @@
         "pages/xiandai/xiandai",
         "pages/favorites/favorites",
         "pages/customFormula/customFormula",
-        "pages/customFormulaTest/customFormulaTest"
+        "pages/customFormulaTest/customFormulaTest",
+        "pages/customFormulaList/customFormulaList"
     ],
     "window": {
         "backgroundColor": "#e6eef5",

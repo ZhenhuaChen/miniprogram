@@ -89,3 +89,12 @@ button {
   border-radius: 8rpx;
   margin-top: 8rpx;
 }
+.all-custom-btn {
+  width: 90vw;
+  margin: 16rpx auto;
+  background: #5702a8;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  display: block;
+}

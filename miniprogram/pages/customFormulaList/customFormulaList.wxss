@@ -1,0 +1,41 @@
+.container {
+  padding: 16px;
+  background-color: #f5f5f5;
+}
+.formula-item {
+  width: 90vw;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+.formula-header {
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  color: #8931dc;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.delete-btn {
+  background: #e74c3c;
+  margin: 0px;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 4px 12px;
+}
+.formula-content {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+.loading, .empty {
+  text-align: center;
+  color: #888;
+  margin: 32px 0;
+} 

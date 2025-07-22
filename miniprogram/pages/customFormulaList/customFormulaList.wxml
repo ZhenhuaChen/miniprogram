@@ -1,0 +1,19 @@
+<view class="container">
+  <view wx:if="{{isLoading}}" class="loading">加载中...</view>
+  <view wx:if="{{isEmpty && !isLoading}}" class="empty">暂无自制公式</view>
+  <view wx:if="{{!isEmpty && !isLoading}}">
+    <block wx:for="{{formulas}}" wx:key="_id">
+      <view class="formula-item">
+        <view class="formula-header">
+          <text>{{item.name}}</text>
+          <button class="delete-btn" type="warn" size="mini" data-id="{{item._id}}" bindtap="onDelete">删除</button>
+        </view>
+        <view class="formula-content">
+          <rich-text nodes="{{item.subNameHtml}}"></rich-text>
+          <rich-text nodes="{{item.formulaHtml}}"></rich-text>
+          <view wx:if="{{item.description}}">{{item.description}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 
