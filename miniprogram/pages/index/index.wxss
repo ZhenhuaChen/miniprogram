@@ -121,7 +121,7 @@ header {
   font-size: 36rpx;
   font-weight: bold;
   color: #7d46b2;
-  margin: 40rpx 20rpx 20rpx;
+  margin: 0rpx 20rpx 20rpx;
   text-align: center;
   position: relative;
   padding: 10rpx 0;

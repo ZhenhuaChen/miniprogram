@@ -8,7 +8,8 @@
         "pages/computer/computer",
         "pages/xiandai/xiandai",
         "pages/favorites/favorites",
-        "pages/customFormula/customFormula"
+        "pages/customFormula/customFormula",
+        "pages/customFormulaTest/customFormulaTest"
     ],
     "window": {
         "backgroundColor": "#e6eef5",
@@ -41,16 +42,16 @@
                 "selectedIconPath": "/images/startSelected.png"
             },
             {
-                "pagePath": "pages/findMe/find-me",
-                "text": "联系开发者",
-                "iconPath": "/images/require.png",
-                "selectedIconPath": "/images/requireSelected.png"
-            },
-            {
                 "pagePath": "pages/customFormula/customFormula",
                 "text": "自制公式",
-                "iconPath": "/images/require.png",
-                "selectedIconPath": "/images/requireSelected.png"
+                "iconPath": "/images/customer.png",
+                "selectedIconPath": "/images/customerSelectd.png"
+            },
+            {
+                "pagePath": "pages/findMe/find-me",
+                "text": "联系开发者",
+                "iconPath": "/images/contact.png",
+                "selectedIconPath": "/images/contactSelected.png"
             }
         ]
     },
