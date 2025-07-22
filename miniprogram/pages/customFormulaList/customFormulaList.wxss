@@ -39,3 +39,38 @@
   color: #888;
   margin: 32px 0;
 } 
+
+.button {
+    margin-top: 20rpx;
+    background-color: #9C27B0;
+    padding: 12px 24px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.button:active {
+    background-color: #450183;
+}
+
+.button-text {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.all-custom-btn-wrap{
+    margin-bottom: 20rpx;
+    width: 96vw;
+    text-align: right;
+}
+.all-custom-btn {
+    width: auto;
+    color: #5702a8;
+    font-size: 30rpx;
+    display: inline-block;
+    text-align: left;
+    padding: 0;
+    text-decoration: underline;
+}

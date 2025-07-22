@@ -56,5 +56,10 @@ Page({
         }
       }
     });
+  },
+  goToDiy() {
+    wx.navigateTo({
+      url: '/pages/customFormula/customFormula',
+    });
   }
 }); 

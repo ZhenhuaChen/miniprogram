@@ -43,7 +43,7 @@
                 "selectedIconPath": "/images/startSelected.png"
             },
             {
-                "pagePath": "pages/customFormula/customFormula",
+                "pagePath": "pages/customFormulaList/customFormulaList",
                 "text": "自制公式",
                 "iconPath": "/images/customer.png",
                 "selectedIconPath": "/images/customerSelectd.png"

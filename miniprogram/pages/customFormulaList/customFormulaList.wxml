@@ -1,7 +1,16 @@
 <view class="container">
   <view wx:if="{{isLoading}}" class="loading">加载中...</view>
-  <view wx:if="{{isEmpty && !isLoading}}" class="empty">暂无自制公式</view>
+  <view wx:if="{{isEmpty && !isLoading}}" class="empty">
+    <text>你还没有自制公式，快去制作吧！</text>
+    <view class="button" bindtap="goToDiy">
+        <text class="button-text">去制作</text>
+    </view>
+  </view>
+
   <view wx:if="{{!isEmpty && !isLoading}}">
+    <view class="all-custom-btn-wrap">
+        <view class="all-custom-btn" bindtap="goToDiy">新增自制公式</view>
+    </view>
     <block wx:for="{{formulas}}" wx:key="_id">
       <view class="formula-item">
         <view class="formula-header">

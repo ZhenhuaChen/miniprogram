@@ -84,7 +84,7 @@ Page({
   },
   goToDiy() {
     console.log('goToDiy')
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/customFormula/customFormula',
     });
   }

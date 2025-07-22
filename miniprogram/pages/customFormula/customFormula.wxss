@@ -1,3 +1,10 @@
+.custom-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #fff;
+}
 .form-wrap{
     margin: auto;
     width: 90vw;
@@ -88,17 +95,4 @@ button {
   color: #fff;
   border-radius: 8rpx;
   margin-top: 8rpx;
-}
-.all-custom-btn-wrap{
-  width: 96vw;
-  text-align: right;
-}
-.all-custom-btn {
-  width: auto;
-  color: #5702a8;
-  font-size: 30rpx;
-  display: inline-block;
-  text-align: left;
-  padding: 0;
-  text-decoration: underline;
 }
