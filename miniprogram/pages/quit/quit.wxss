@@ -11,6 +11,26 @@
     flex-direction: column;
     align-items: center;
 }
+.formula-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+.formula-name {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10rpx;
+}
+.formula-subject {
+    font-size: 24rpx;
+    color: #5702a8;
+    background-color: #f0f0f0;
+    padding: 4rpx 12rpx;
+    border-radius: 12rpx;
+    border: 1rpx solid #5702a8;
+}
 .quit-option{
     display: flex;
   justify-content: space-around;

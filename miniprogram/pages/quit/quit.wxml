@@ -1,7 +1,10 @@
 <!--pages/quit/quit.wxml-->
 <view class="quit">
     <view class="quit-content" wx:if="{{formula.name}}">
-      <view>{{formula.name}}</view>
+      <view class="formula-header">
+        <view class="formula-name">{{formula.name}}</view>
+        <view class="formula-subject" wx:if="{{formula.subjectName}}">【{{formula.subjectName}}】</view>
+      </view>
         <view wx:if="{{formula.subName}}" class="quit-question quit-question-title">
             <rich-text  nodes="{{subName}}"></rich-text>
         </view>

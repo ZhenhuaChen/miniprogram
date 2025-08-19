@@ -61,3 +61,35 @@ exports.getComputerData = async (type) => {
 exports.getXianDaiData = async (onlyfavorite, type) => {
   return await getCollectionData('xiandai', {'onlyfavorite': onlyfavorite, type: type});
 }
+
+exports.getCombinedFavoriteData = async () => {
+  const favoriteIds = wx.getStorageSync("favoriteIds") || [];
+  
+  if (favoriteIds.length === 0) {
+    return { data: [], errMsg: '没有收藏数据' };
+  }
+
+  try {
+    // 获取高数收藏数据
+    const mathResult = await getCollectionData('math2', { onlyfavorite: true });
+    // 获取线代收藏数据  
+    const xiandaiResult = await getCollectionData('xiandai', { onlyfavorite: true });
+    
+    // 合并数据并添加类型标识
+    const combinedData = [
+      ...mathResult.data.map(item => ({ ...item, subject: 'math', subjectName: '高数' })),
+      ...xiandaiResult.data.map(item => ({ ...item, subject: 'xiandai', subjectName: '线代' }))
+    ];
+    
+    // 随机打乱数组顺序，让高数和线代的题目交替出现
+    const shuffledData = combinedData.sort(() => Math.random() - 0.5);
+    
+    return {
+      data: shuffledData,
+      errMsg: `合并收藏数据，共${shuffledData.length}道题目`
+    };
+  } catch (error) {
+    console.error('获取合并收藏数据失败:', error);
+    return { data: [], errMsg: '获取数据失败' };
+  }
+}
