@@ -178,6 +178,12 @@ Page({
           userXDProgress[typeKey] = userXDProgress[typeKey].filter(id => id !== formulaId);
           wx.setStorageSync('userXDProgress', userXDProgress);
         }
+      } else if (subject === 'gailvlun') {
+        const userGailvlunProgress = wx.getStorageSync("userGailvlunProgress") || {};
+        if (userGailvlunProgress.all && userGailvlunProgress.all.includes(formulaId)) {
+          userGailvlunProgress.all = userGailvlunProgress.all.filter(id => id !== formulaId);
+          wx.setStorageSync('userGailvlunProgress', userGailvlunProgress);
+        }
       }
     } else {
       // 原有逻辑：非收藏模式
@@ -229,6 +235,15 @@ Page({
           userXDProgress[typeKey].push(formulaId);
         }
         wx.setStorageSync('userXDProgress', userXDProgress);
+      } else if (subject === 'gailvlun') {
+        const userGailvlunProgress = wx.getStorageSync("userGailvlunProgress") || {};
+        if (!userGailvlunProgress.all) {
+          userGailvlunProgress.all = [];
+        }
+        if (!userGailvlunProgress.all.includes(formulaId)) {
+          userGailvlunProgress.all.push(formulaId);
+        }
+        wx.setStorageSync('userGailvlunProgress', userGailvlunProgress);
       }
     } else {
       // 原有逻辑：非收藏模式

@@ -62,6 +62,10 @@ exports.getXianDaiData = async (onlyfavorite, type) => {
   return await getCollectionData('xiandai', {'onlyfavorite': onlyfavorite, type: type});
 }
 
+exports.getGailvlunData = async (onlyfavorite) => {
+  return await getCollectionData('gailvlun', {'onlyfavorite': onlyfavorite});
+}
+
 exports.getCombinedFavoriteData = async () => {
   const favoriteIds = wx.getStorageSync("favoriteIds") || [];
   
@@ -74,14 +78,17 @@ exports.getCombinedFavoriteData = async () => {
     const mathResult = await getCollectionData('math2', { onlyfavorite: true });
     // 获取线代收藏数据  
     const xiandaiResult = await getCollectionData('xiandai', { onlyfavorite: true });
+    // 获取概率论收藏数据
+    const gailvlunResult = await getCollectionData('gailvlun', { onlyfavorite: true });
     
     // 合并数据并添加类型标识
     const combinedData = [
       ...mathResult.data.map(item => ({ ...item, subject: 'math', subjectName: '高数' })),
-      ...xiandaiResult.data.map(item => ({ ...item, subject: 'xiandai', subjectName: '线代' }))
+      ...xiandaiResult.data.map(item => ({ ...item, subject: 'xiandai', subjectName: '线代' })),
+      ...gailvlunResult.data.map(item => ({ ...item, subject: 'gailvlun', subjectName: '概率论' }))
     ];
     
-    // 随机打乱数组顺序，让高数和线代的题目交替出现
+    // 随机打乱数组顺序，让高数、线代和概率论的题目交替出现
     const shuffledData = combinedData.sort(() => Math.random() - 0.5);
     
     return {

@@ -13,10 +13,11 @@ Page({
     hasMore: true, // 是否还有更多数据
     keyword: "", // 搜索关键词
     favoriteIds: [], // 用户收藏的 ID 列表
-    currentTab: 'math', // 当前选择的标签：'math' 或 'xiandai'
+    currentTab: 'math', // 当前选择的标签：'math'、'xiandai' 或 'gailvlun'
     tabs: [
       { id: 'math', name: '高数', collection: 'math2' },
-      { id: 'xiandai', name: '线代', collection: 'xiandai' }
+      { id: 'xiandai', name: '线代', collection: 'xiandai' },
+      { id: 'gailvlun', name: '概率论', collection: 'gailvlun' }
     ]
   },
 
@@ -92,7 +93,7 @@ Page({
           isFavorite: this.data.favoriteIds.includes(item._id), // 初始化收藏状态
           subNameHtml: this.parseLaTeX(item.subName),
           formulaHtml: this.parseLaTeX(item.formula), // 解析 LaTeX 公式
-          collectionType: currentTab === 'math' ? '高数' : '线代' // 添加集合类型标识
+          collectionType: currentTab === 'math' ? '高数' : (currentTab === 'xiandai' ? '线代' : '概率论') // 添加集合类型标识
         }));
 
         // 更新公式列表

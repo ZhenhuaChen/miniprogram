@@ -79,6 +79,10 @@ Page({
        wx.navigateTo({
         url: "/pages/xiandai/xiandai",
       }) 
+    }else if(param === '6'){
+       wx.navigateTo({
+        url: "/pages/gailvlun/gailvlun",
+      }) 
     }
   },
   goSubject: function(event) {

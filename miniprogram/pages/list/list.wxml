@@ -24,7 +24,7 @@
           <text>{{item.name}}</text>
           <text class="formula-type">{{item.collectionType}}</text>
         </view>
-        <view class="formula-content" wx:if="{{!item.hideContent && item.collectionType === '线代'}}">
+        <view class="formula-content" wx:if="{{!item.hideContent && item.collectionType !== '高数'}}">
           <rich-text nodes="{{item.subNameHtml}}"></rich-text>
         </view> 
         <!-- 公式内容 -->

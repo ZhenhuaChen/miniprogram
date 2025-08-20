@@ -11,11 +11,12 @@ Page({
     favoriteFormulas: [],
     isLoading: false,
     isEmpty: false,
-    currentTab: 'all', // 'all', 'math', 'xiandai'
+    currentTab: 'all', // 'all', 'math', 'xiandai', 'gailvlun'
     tabs: [
       { id: 'all', name: '全部' },
       { id: 'math', name: '高数' },
-      { id: 'xiandai', name: '线代' }
+      { id: 'xiandai', name: '线代' },
+      { id: 'gailvlun', name: '概率论' }
     ]
   },
 
@@ -59,11 +60,13 @@ Page({
       // 根据当前选择的标签过滤数据
       let collections = [];
       if (this.data.currentTab === 'all') {
-        collections = ['math2', 'xiandai'];
+        collections = ['math2', 'xiandai', 'gailvlun'];
       } else if (this.data.currentTab === 'math') {
         collections = ['math2'];
       } else if (this.data.currentTab === 'xiandai') {
         collections = ['xiandai'];
+      } else if (this.data.currentTab === 'gailvlun') {
+        collections = ['gailvlun'];
       }
 
       const allFormulas = [];
@@ -82,7 +85,7 @@ Page({
             ...item,
             formulaHtml: this.parseLaTeX(item.formula),
             subNameHtml: this.parseLaTeX(item.subName),
-            collectionType: collection === 'math2' ? '高数' : '线代'
+            collectionType: collection === 'math2' ? '高数' : (collection === 'xiandai' ? '线代' : '概率论')
           }));
           
           allFormulas.push(...formulas);
