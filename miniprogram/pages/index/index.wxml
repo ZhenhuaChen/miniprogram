@@ -3,6 +3,12 @@
   <view class="container">
     <header userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}"></header>
     <view class="content-wrap">
+      <!-- 图片功能公告 -->
+      <view class="announcement" bindtap="goToCustomFormula">
+        <text class="announcement-icon">📸</text>
+        <text class="announcement-text">自制公式可以上传图片啦！快去DIY你的背诵公式</text>
+        <text class="announcement-arrow">→</text>
+      </view>
       <view class="remain-day">距离2026考研还剩{{remainDays}}天</view>
       <view class="cotent-text">
         <view class="header-banner-left" bindtap="goChapter">

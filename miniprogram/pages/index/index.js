@@ -102,6 +102,13 @@ Page({
     });
   },
 
+  // 跳转到自制公式页面
+  goToCustomFormula() {
+    wx.navigateTo({
+      url: "/pages/customFormula/customFormula",
+    });
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

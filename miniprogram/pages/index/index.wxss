@@ -23,6 +23,33 @@ header {
   flex-direction: column;
   overflow: hidden;
 }
+/* 公告样式 */
+.announcement {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.announcement-icon {
+  font-size: 32rpx;
+  margin-right: 15rpx;
+}
+
+.announcement-text {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.announcement-arrow {
+  font-size: 28rpx;
+  margin-left: 15rpx;
+}
+
 .remain-day{
   font-size: 30rpx;
   color: #ea7070;
