@@ -20,7 +20,8 @@ Page({
       formulas: data.map(item => ({
         ...item,
         subNameHtml: parse(item.subName, katexOption),
-        formulaHtml: parse(item.formula, katexOption)
+        // 只有文本类型的答案才解析LaTeX
+        formulaHtml: item.answerType === 'text' ? parse(item.formula, katexOption) : ''
       })),
       isLoading: false,
       isEmpty: data.length === 0
@@ -60,6 +61,15 @@ Page({
   goToDiy() {
     wx.navigateTo({
       url: '/pages/customFormula/customFormula',
+    });
+  },
+  
+  // 预览图片
+  onPreviewImage(e) {
+    const src = e.currentTarget.dataset.src;
+    wx.previewImage({
+      current: src,
+      urls: [src]
     });
   }
 }); 

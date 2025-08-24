@@ -18,9 +18,18 @@
           <button class="delete-btn" type="warn" size="mini" data-id="{{item._id}}" bindtap="onDelete">删除</button>
         </view>
         <view class="formula-content">
-          <rich-text nodes="{{item.subNameHtml}}"></rich-text>
-          <rich-text nodes="{{item.formulaHtml}}"></rich-text>
-          <view wx:if="{{item.description}}">{{item.description}}</view>
+          <view class="question">
+            <rich-text nodes="{{item.subNameHtml}}"></rich-text>
+          </view>
+          <view class="answer">
+            <view wx:if="{{item.answerType === 'text'}}" class="text-answer">
+              <rich-text nodes="{{item.formulaHtml}}"></rich-text>
+            </view>
+            <view wx:elif="{{item.answerType === 'image'}}" class="image-answer">
+              <image src="{{item.imageFileId}}" mode="widthFix" class="answer-image" bindtap="onPreviewImage" data-src="{{item.imageFileId}}"/>
+            </view>
+          </view>
+          <view wx:if="{{item.description}}" class="description">{{item.description}}</view>
         </view>
       </view>
     </block>
