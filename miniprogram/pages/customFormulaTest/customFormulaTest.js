@@ -41,10 +41,15 @@ Page({
     wx.hideLoading();
   },
   handleShowAnswer() {
-    this.setData({
-      showAnswer: true,
-      nodes: parse(this.data.formula.formula, katexOption),
-    });
+    const { formula } = this.data;
+    if (formula.answerType === 'image') {
+      this.setData({ showAnswer: true });
+    } else {
+      this.setData({
+        showAnswer: true,
+        nodes: parse(formula.formula, katexOption),
+      });
+    }
   },
   handleNo() {
     this.setData({ needMorePractice: true });
@@ -86,5 +91,15 @@ Page({
     wx.navigateTo({
       url: '/pages/customFormula/customFormula',
     });
+  },
+
+  // 图片预览
+  onPreviewImage() {
+    const { formula } = this.data;
+    if (formula.imageUrl) {
+      wx.previewImage({
+        urls: [formula.imageUrl]
+      });
+    }
   }
 }); 

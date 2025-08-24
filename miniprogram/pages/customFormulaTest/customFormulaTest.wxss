@@ -121,3 +121,11 @@ icon {
     color: #fff;
     font-weight: bold;
 }
+
+/* 图片答案样式 */
+.quit-answer-image {
+    max-width: 80vw;
+    max-height: 400rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}

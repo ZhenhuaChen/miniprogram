@@ -16,8 +16,30 @@
       <input name="subName" placeholder="请输入公式提问" value="{{subName}}" bindinput="onInput" data-field="subName" />
     </view>
     <view class="form-item">
+      <text>答案类型</text>
+      <radio-group bindchange="onAnswerTypeChange" class="answer-type-group">
+        <label class="radio-item">
+          <radio value="text" checked="{{answerType === 'text'}}" />手动输入公式
+        </label>
+        <label class="radio-item">
+          <radio value="image" checked="{{answerType === 'image'}}" />上传图片
+        </label>
+      </radio-group>
+    </view>
+    <view wx:if="{{answerType === 'text'}}" class="form-item">
       <text>公式答案（支持LaTeX）</text>
       <textarea name="formula" placeholder="例如：1 - cos(x) \sim \frac{x^2}{2} \quad (x \to 0)" value="{{formula}}" bindinput="onInput" data-field="formula" />
+    </view>
+    <view wx:if="{{answerType === 'image'}}" class="form-item">
+      <text>公式答案（图片）</text>
+      <view class="image-upload-area" bindtap="onChooseImage">
+        <image wx:if="{{imageUrl}}" src="{{imageUrl}}" mode="aspectFit" class="preview-image"/>
+        <view wx:else class="upload-placeholder">
+          <text class="upload-text">点击上传答案图片</text>
+          <text class="upload-tip">支持jpg/png/gif，最大2MB</text>
+        </view>
+      </view>
+      <button wx:if="{{imageUrl}}" class="delete-image-btn" size="mini" bindtap="onDeleteImage" type="default">删除图片</button>
     </view>
     <view class="form-item">
       <text>其它描述（可选）</text>
@@ -34,7 +56,8 @@
       <view>提问：</view>
       <rich-text nodes="{{subNameHtml}}"></rich-text>
       <view>答案：</view>
-      <rich-text nodes="{{formulaHtml}}"></rich-text>
+      <rich-text wx:if="{{answerType === 'text'}}" nodes="{{formulaHtml}}"></rich-text>
+      <image wx:if="{{answerType === 'image' && imageUrl}}" src="{{imageUrl}}" mode="aspectFit" class="preview-answer-image"/>
       <view wx:if="{{description}}">描述：</view>
       <view>{{description}}</view>
     </view>

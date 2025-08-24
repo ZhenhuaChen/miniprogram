@@ -103,3 +103,73 @@ button {
   border-radius: 8rpx;
   margin-top: 20rpx
 }
+
+/* 新增样式 */
+.answer-type-group {
+  display: flex;
+  margin-top: 8rpx;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  margin-right: 32rpx;
+  font-size: 26rpx;
+}
+
+.radio-item radio {
+  margin-right: 8rpx;
+}
+
+.image-upload-area {
+  width: 100%;
+  min-height: 200rpx;
+  border: 2rpx dashed #d3d3d3;
+  border-radius: 8rpx;
+  margin-top: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  position: relative;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #999;
+}
+
+.upload-text {
+  font-size: 28rpx;
+  margin-bottom: 8rpx;
+}
+
+.upload-tip {
+  font-size: 22rpx;
+  color: #ccc;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300rpx;
+  border-radius: 8rpx;
+}
+
+.preview-answer-image {
+  max-width: 100%;
+  max-height: 200rpx;
+  border-radius: 8rpx;
+  margin-top: 8rpx;
+}
+
+.delete-image-btn {
+  margin-top: 16rpx !important;
+  background: #f5f5f5 !important;
+  color: #e74c3c !important;
+  border: 1rpx solid #e74c3c !important;
+  font-size: 24rpx !important;
+  height: 48rpx !important;
+  line-height: 48rpx !important;
+}
