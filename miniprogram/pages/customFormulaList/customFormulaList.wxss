@@ -38,9 +38,6 @@
 .question {
   margin-bottom: 12px;
   padding: 8px;
-  background-color: #f8f9fa;
-  border-radius: 6px;
-  border-left: 3px solid #8931dc;
 }
 
 .answer {
@@ -49,15 +46,11 @@
 
 .text-answer {
   padding: 8px;
-  background-color: #e8f5e8;
-  border-radius: 6px;
   border-left: 3px solid #28a745;
 }
 
 .image-answer {
   padding: 8px;
-  background-color: #e8f5e8;
-  border-radius: 6px;
   border-left: 3px solid #28a745;
   text-align: center;
 }
@@ -115,4 +108,26 @@
     text-align: left;
     padding: 0;
     text-decoration: underline;
+}
+
+/* 悬浮测试按钮 */
+.float-test-btn {
+    position: fixed;
+    bottom: 120rpx;
+    right: 40rpx;
+    width: 120rpx;
+    height: 120rpx;
+    background: linear-gradient(135deg, #8931dc, #5702a8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8rpx 20rpx rgba(147, 79, 223, 0.4);
+    z-index: 999;
+}
+
+.float-btn-text {
+    color: white;
+    font-size: 28rpx;
+    font-weight: bold;
 }

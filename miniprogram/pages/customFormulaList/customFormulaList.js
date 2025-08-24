@@ -71,5 +71,12 @@ Page({
       current: src,
       urls: [src]
     });
+  },
+
+  // 跳转到测试页面
+  goToTest() {
+    wx.navigateTo({
+      url: '/pages/customFormulaTest/customFormulaTest'
+    });
   }
 }); 

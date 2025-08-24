@@ -34,4 +34,9 @@
       </view>
     </block>
   </view>
+
+  <!-- 悬浮测试按钮 -->
+  <view class="float-test-btn" bindtap="goToTest">
+    <text class="float-btn-text">去测试</text>
+  </view>
 </view> 
