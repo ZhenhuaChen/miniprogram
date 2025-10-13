@@ -2,6 +2,7 @@ const getOpenId = require('./getOpenId/index');
 const syncUserData = require('./syncUserData/index');
 const saveCustomFormula = require('./saveCustomFormula/index');
 const deleteCustomFormula = require('./deleteCustomFormula/index');
+const handleInvite = require('./handleInvite/index');
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -14,6 +15,8 @@ exports.main = async (event, context) => {
       return await saveCustomFormula.main(event, context);
     case 'deleteCustomFormula':
       return await deleteCustomFormula.main(event, context);
+    case 'handleInvite':
+      return await handleInvite.main(event, context);
     default:
       return {
         success: false,

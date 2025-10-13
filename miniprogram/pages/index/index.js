@@ -109,6 +109,13 @@ Page({
     });
   },
 
+  // 跳转到分享页面
+  goToInvite() {
+    wx.navigateTo({
+      url: "/pages/invite/invite",
+    });
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -134,6 +141,7 @@ Page({
       remainDays: this.getRemainData()
     });
     this.updateProgress();
+    this.updatePointsDisplay();
   },
 
   /**
@@ -171,7 +179,28 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+    return {
+      title: '我在「小小考研公式」学习数学公式，一起来高效备考吧！',
+      path: `/pages/index/index`,
+      imageUrl: ''
+    };
+  },
+
+  // 分享到朋友圈
+  onShareTimeline: function () {
+    return {
+      title: '小小考研公式 - 高效学习数学公式，考研必备！',
+      query: '',
+      imageUrl: ''
+    };
+  },
+
+  // 更新积分显示
+  updatePointsDisplay() {
+    const pointsData = DataManager.getPointsData();
+    this.setData({
+      totalPoints: pointsData.totalPoints
+    });
   },
 
   // 检查并执行自动同步
@@ -184,6 +213,17 @@ Page({
         // 智能合并数据，避免数据丢失
         await DataManager.mergeData();
         this.updateProgress();
+      }
+      
+      
+      // 处理每日学习奖励
+      const rewardResult = DataManager.handleDailyStudyReward();
+      if (rewardResult.success) {
+        wx.showToast({
+          title: rewardResult.message,
+          icon: 'success'
+        });
+        this.updatePointsDisplay();
       }
       
     } catch (error) {

@@ -11,7 +11,9 @@
         "pages/favorites/favorites",
         "pages/customFormula/customFormula",
         "pages/customFormulaTest/customFormulaTest",
-        "pages/customFormulaList/customFormulaList"
+        "pages/customFormulaList/customFormulaList",
+        "pages/invite/invite",
+        "pages/points/points"
     ],
     "window": {
         "backgroundColor": "#e6eef5",

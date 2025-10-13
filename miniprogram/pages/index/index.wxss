@@ -50,6 +50,64 @@ header {
   margin-left: 15rpx;
 }
 
+/* 邀请好友部分样式 */
+.invite-section {
+  background: linear-gradient(135deg, #5702a8 0%, #7d46b2 100%);
+  color: white;
+  padding: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.invite-section:active {
+  transform: scale(0.98);
+}
+
+.invite-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.invite-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.invite-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.invite-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.invite-desc {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.invite-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.stats-points {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+}
+
 .remain-day{
   font-size: 30rpx;
   color: #ea7070;

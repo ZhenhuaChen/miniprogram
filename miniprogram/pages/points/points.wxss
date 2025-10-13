@@ -1,0 +1,356 @@
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 积分总览 */
+.points-header {
+  width: 100%;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.points-card {
+  background: linear-gradient(135deg, #5702a8 0%, #7d46b2 100%);
+  border-radius: 20rpx;
+  padding: 60rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.points-number {
+  font-size: 72rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.points-label {
+  font-size: 32rpx;
+  opacity: 0.9;
+}
+
+/* 积分商城 */
+.rewards-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.rewards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.reward-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background: #f8f9fa;
+  border-radius: 15rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.reward-item:active {
+  border-color: #5702a8;
+  transform: scale(0.98);
+}
+
+.reward-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+  width: 80rpx;
+  text-align: center;
+}
+
+.reward-content {
+  flex: 1;
+}
+
+.reward-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.reward-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.reward-points {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.points-cost {
+  font-size: 26rpx;
+  color: #5702a8;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.exchange-btn {
+  font-size: 24rpx;
+  color: #5702a8;
+  background: rgba(87, 2, 168, 0.1);
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+.disabled-btn {
+  font-size: 24rpx;
+  color: #999;
+  background: #f0f0f0;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+/* 获取积分方式 */
+.earn-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.earn-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25rpx;
+}
+
+.earn-item {
+  display: flex;
+  align-items: center;
+}
+
+.earn-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  width: 60rpx;
+  text-align: center;
+}
+
+.earn-content {
+  flex: 1;
+}
+
+.earn-title {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.earn-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #5702a8;
+  font-weight: bold;
+}
+
+/* 积分记录 */
+.history-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-content {
+  flex: 1;
+}
+
+.history-desc {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.history-date {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.history-points {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.history-points.positive {
+  color: #52c41a;
+}
+
+.history-points.negative {
+  color: #ff4d4f;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 40rpx;
+  color: #999;
+}
+
+.empty-text {
+  display: block;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-tip {
+  display: block;
+  font-size: 26rpx;
+}
+
+/* 模态框 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20rpx;
+  width: 600rpx;
+  max-width: 90%;
+}
+
+.modal-header {
+  padding: 40rpx 40rpx 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-body {
+  padding: 40rpx;
+}
+
+.reward-preview {
+  text-align: center;
+}
+
+.preview-icon {
+  display: block;
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+.preview-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.preview-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.preview-cost {
+  display: block;
+  font-size: 28rpx;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.cancel-btn,
+.confirm-btn {
+  flex: 1;
+  padding: 30rpx 0;
+  text-align: center;
+  font-size: 30rpx;
+  border: none;
+  background: transparent;
+}
+
+.cancel-btn {
+  color: #666;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.confirm-btn {
+  color: #5702a8;
+  font-weight: bold;
+}
+
+/* 加载状态 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loading-content {
+  background: white;
+  padding: 40rpx;
+  border-radius: 10rpx;
+  color: #333;
+}

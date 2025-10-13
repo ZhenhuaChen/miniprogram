@@ -369,6 +369,146 @@ class DataManager {
     // 如果超过30分钟未同步，则需要同步
     return timeDiff > 30 * 60 * 1000;
   }
+
+  // ========== 积分系统相关方法 ==========
+  
+  // 添加积分
+  static addPoints(points, description = '获得积分') {
+    try {
+      let pointsData = this.getStorage('pointsData', {
+        totalPoints: 0,
+        pointsHistory: []
+      });
+      
+      pointsData.totalPoints += points;
+      pointsData.pointsHistory.push({
+        points: points,
+        description: description,
+        date: new Date().toISOString(),
+        timestamp: Date.now()
+      });
+      
+      // 只保留最近100条记录
+      if (pointsData.pointsHistory.length > 100) {
+        pointsData.pointsHistory = pointsData.pointsHistory.slice(-100);
+      }
+      
+      this.setStorage('pointsData', pointsData);
+      return true;
+    } catch (error) {
+      console.error('添加积分失败:', error);
+      return false;
+    }
+  }
+  
+  // 获取积分数据
+  static getPointsData() {
+    return this.getStorage('pointsData', {
+      totalPoints: 0,
+      pointsHistory: []
+    });
+  }
+  
+  // 检查积分是否足够
+  static hasEnoughPoints(requiredPoints) {
+    const pointsData = this.getPointsData();
+    return pointsData.totalPoints >= requiredPoints;
+  }
+  
+  // ========== 分享系统相关方法 ==========
+  
+  // 处理分享奖励
+  static handleShareReward() {
+    try {
+      const today = this.getCurrentDate();
+      let shareData = this.getStorage('shareData', {
+        shareCount: 0,
+        lastShareDate: '',
+        todayShared: false
+      });
+      
+      // 检查今日是否已分享
+      if (shareData.lastShareDate === today) {
+        return { success: false, message: '今日已获得分享奖励' };
+      }
+      
+      // 更新分享数据
+      shareData.shareCount += 1;
+      shareData.lastShareDate = today;
+      shareData.todayShared = true;
+      this.setStorage('shareData', shareData);
+      
+      // 给予分享奖励
+      this.addPoints(20, '每日分享奖励');
+      
+      return { success: true, message: '分享成功！获得20积分奖励！' };
+    } catch (error) {
+      console.error('处理分享奖励失败:', error);
+      return { success: false, message: '分享奖励发放失败' };
+    }
+  }
+  
+  // 获取分享数据
+  static getShareData() {
+    return this.getStorage('shareData', {
+      shareCount: 0,
+      lastShareDate: '',
+      todayShared: false
+    });
+  }
+  
+  // ========== 学习奖励相关方法 ==========
+  
+  // 处理每日学习奖励
+  static handleDailyStudyReward() {
+    try {
+      const today = this.getCurrentDate();
+      let rewardData = this.getStorage('dailyRewardData', {
+        lastRewardDate: '',
+        rewardedDays: 0
+      });
+      
+      // 如果今天还没有奖励过
+      if (rewardData.lastRewardDate !== today) {
+        rewardData.lastRewardDate = today;
+        rewardData.rewardedDays += 1;
+        this.setStorage('dailyRewardData', rewardData);
+        
+        // 给予每日学习奖励
+        this.addPoints(5, '每日学习奖励');
+        
+        return { success: true, points: 5, message: '获得每日学习奖励5积分！' };
+      }
+      
+      return { success: false, message: '今日已获得学习奖励' };
+    } catch (error) {
+      console.error('处理每日学习奖励失败:', error);
+      return { success: false, message: '奖励发放失败' };
+    }
+  }
+  
+  // 处理章节完成奖励
+  static handleChapterCompleteReward(chapterName) {
+    try {
+      let chapterRewards = this.getStorage('chapterRewards', []);
+      
+      // 检查是否已经奖励过这个章节
+      if (chapterRewards.includes(chapterName)) {
+        return { success: false, message: '该章节已获得奖励' };
+      }
+      
+      chapterRewards.push(chapterName);
+      this.setStorage('chapterRewards', chapterRewards);
+      
+      // 给予章节完成奖励
+      this.addPoints(10, `完成章节《${chapterName}》`);
+      
+      return { success: true, points: 10, message: '恭喜完成章节！获得10积分奖励！' };
+    } catch (error) {
+      console.error('处理章节完成奖励失败:', error);
+      return { success: false, message: '奖励发放失败' };
+    }
+  }
 }
 
 module.exports = DataManager; 

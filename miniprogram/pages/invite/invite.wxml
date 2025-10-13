@@ -1,0 +1,81 @@
+<view class="container">
+  <!-- 顶部状态 -->
+  <view class="status-section">
+    <view class="status-card">
+      <view class="status-item">
+        <text class="status-number">{{totalPoints}}</text>
+        <text class="status-label">我的积分</text>
+      </view>
+      <view class="status-item">
+        <text class="status-number">{{shareCount}}</text>
+        <text class="status-label">分享次数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享状态卡片 -->
+  <view class="share-status-card">
+    <view class="card-header">
+      <text class="card-title">今日分享状态</text>
+    </view>
+    <view class="share-status">
+      <text class="status-icon" wx:if="{{todayShared}}">✅</text>
+      <text class="status-icon" wx:else>⏰</text>
+      <text class="status-text" wx:if="{{todayShared}}">今日已分享，获得积分奖励</text>
+      <text class="status-text" wx:else>今日还未分享，快来获取积分吧</text>
+    </view>
+    <view class="share-tip">
+      每日首次分享可获得20积分奖励
+    </view>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view class="share-section">
+    <button class="share-btn primary" open-type="share">
+      <image class="btn-icon" src="/images/share.png" mode="aspectFit"></image>
+      分享给微信好友
+    </button>
+  </view>
+
+  <!-- 分享奖励说明 -->
+  <view class="reward-section">
+    <view class="section-title">分享奖励</view>
+    <view class="reward-list">
+      <view class="reward-item">
+        <view class="reward-icon">📱</view>
+        <view class="reward-content">
+          <text class="reward-title">分享给微信好友</text>
+          <text class="reward-desc">每日首次可获得20积分</text>
+        </view>
+      </view>
+      <view class="reward-item">
+        <view class="reward-icon">📸</view>
+        <view class="reward-content">
+          <text class="reward-title">分享到朋友圈</text>
+          <text class="reward-desc">每日首次可获得20积分</text>
+        </view>
+      </view>
+      <view class="reward-item">
+        <view class="reward-icon">💎</view>
+        <view class="reward-content">
+          <text class="reward-title">积分用途</text>
+          <text class="reward-desc">解锁高级功能和内容</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分中心入口 -->
+  <view class="bottom-section">
+    <button class="points-btn" bindtap="goToPoints">
+      查看积分明细
+    </button>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-mask">
+    <view class="loading-content">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

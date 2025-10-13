@@ -1,0 +1,213 @@
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 状态卡片 */
+.status-section {
+  width:100%;
+  margin-bottom: 30rpx;
+}
+
+.status-card {
+  background: linear-gradient(135deg, #5702a8 0%, #7d46b2 100%);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.status-number {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.status-label {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 分享状态卡片 */
+.share-status-card {
+  display: flex;
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(87, 2, 168, 0.1);
+}
+
+.card-header {
+  margin-bottom: 30rpx;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.share-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.status-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.status-text {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+.share-tip {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+}
+
+/* 分享按钮 */
+.share-section {
+  margin-bottom: 30rpx;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.share-btn.primary {
+  background: #5702a8;
+  color: white;
+  border-color: #5702a8;
+}
+
+.btn-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+
+/* 奖励说明 */
+.reward-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.reward-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25rpx;
+  width: 65vw;
+}
+
+.reward-item {
+  display: flex;
+  align-items: center;
+}
+
+.reward-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  width: 60rpx;
+  text-align: center;
+}
+
+.reward-content {
+  flex: 1;
+}
+
+.reward-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.reward-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 输入邀请码 */
+.input-section {
+  margin-bottom: 30rpx;
+}
+
+.input-btn {
+  background: white;
+  color: #5702a8;
+  border: 2rpx solid #5702a8;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  font-size: 32rpx;
+  width: 100%;
+}
+
+/* 底部按钮 */
+.bottom-section {
+  margin-bottom: 50rpx;
+}
+
+.points-btn {
+  background: transparent;
+  color: #5702a8;
+  border: 2rpx solid #5702a8;
+  border-radius: 15rpx;
+  padding: 25rpx;
+  font-size: 28rpx;
+  width: 100%;
+}
+
+/* 加载状态 */
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loading-content {
+  background: white;
+  padding: 40rpx;
+  border-radius: 10rpx;
+  color: #333;
+}

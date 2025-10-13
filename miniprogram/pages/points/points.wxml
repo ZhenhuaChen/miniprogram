@@ -1,0 +1,116 @@
+<view class="container">
+  <!-- 积分总览 -->
+  <view class="points-header">
+    <view class="points-card">
+      <text class="points-number">{{totalPoints}}</text>
+      <text class="points-label">我的积分</text>
+    </view>
+  </view>
+
+  <!-- 积分商城 -->
+  <view class="rewards-section">
+    <view class="section-title">积分商城</view>
+    <view class="rewards-list">
+      <view 
+        class="reward-item" 
+        wx:for="{{rewards}}" 
+        wx:key="id"
+        bindtap="showExchange"
+        data-index="{{index}}"
+      >
+        <view class="reward-icon">{{item.icon}}</view>
+        <view class="reward-content">
+          <text class="reward-title">{{item.title}}</text>
+          <text class="reward-desc">{{item.desc}}</text>
+        </view>
+        <view class="reward-points">
+          <text class="points-cost">{{item.points}}积分</text>
+          <text class="exchange-btn" wx:if="{{totalPoints >= item.points}}">兑换</text>
+          <text class="disabled-btn" wx:else>积分不足</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 获取积分方式 -->
+  <view class="earn-section">
+    <view class="section-title">如何获得积分？</view>
+    <view class="earn-list">
+      <view class="earn-item">
+        <view class="earn-icon">🎯</view>
+        <view class="earn-content">
+          <text class="earn-title">每日学习</text>
+          <text class="earn-desc">+5积分</text>
+        </view>
+      </view>
+      <view class="earn-item">
+        <view class="earn-icon">👥</view>
+        <view class="earn-content">
+          <text class="earn-title">邀请好友</text>
+          <text class="earn-desc">+50积分</text>
+        </view>
+      </view>
+      <view class="earn-item">
+        <view class="earn-icon">📖</view>
+        <view class="earn-content">
+          <text class="earn-title">完成章节</text>
+          <text class="earn-desc">+10积分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分记录 -->
+  <view class="history-section" wx:if="{{pointsHistory.length > 0}}">
+    <view class="section-title">积分记录</view>
+    <view class="history-list">
+      <view 
+        class="history-item" 
+        wx:for="{{pointsHistory}}" 
+        wx:key="index"
+      >
+        <view class="history-content">
+          <text class="history-desc">{{item.description}}</text>
+          <text class="history-date">{{item.date}}</text>
+        </view>
+        <view class="history-points {{item.points > 0 ? 'positive' : 'negative'}}">
+          {{item.points > 0 ? '+' : ''}}{{item.points}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{pointsHistory.length === 0 && !loading}}">
+    <text class="empty-text">暂无积分记录</text>
+    <text class="empty-tip">开始学习或邀请好友来获得积分吧！</text>
+  </view>
+
+  <!-- 兑换确认模态框 -->
+  <view class="modal-mask" wx:if="{{showExchangeModal}}" bindtap="hideExchangeModal">
+    <view class="modal-content" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">确认兑换</text>
+      </view>
+      <view class="modal-body">
+        <view class="reward-preview">
+          <text class="preview-icon">{{selectedReward.icon}}</text>
+          <text class="preview-title">{{selectedReward.title}}</text>
+          <text class="preview-desc">{{selectedReward.desc}}</text>
+          <text class="preview-cost">需要消耗 {{selectedReward.points}} 积分</text>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="hideExchangeModal">取消</button>
+        <button class="confirm-btn" bindtap="confirmExchange">确认兑换</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-mask">
+    <view class="loading-content">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

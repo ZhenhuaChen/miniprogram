@@ -9,6 +9,21 @@
         <text class="announcement-text">自制公式可以上传图片啦！快去DIY你的背诵公式</text>
         <text class="announcement-arrow">→</text>
       </view>
+      
+      <!-- 分享奖励入口 -->
+      <view class="invite-section" bindtap="goToInvite">
+        <view class="invite-content">
+          <text class="invite-icon">📱</text>
+          <view class="invite-text">
+            <text class="invite-title">分享得积分</text>
+            <text class="invite-desc">每日分享可获得20积分奖励</text>
+          </view>
+        </view>
+        <view class="invite-stats">
+          <text class="stats-points">{{totalPoints}}积分</text>
+        </view>
+      </view>
+      
       <view class="remain-day">距离2026考研还剩{{remainDays}}天</view>
       <!-- <view class="cotent-text">
         <view class="header-banner-left" bindtap="goChapter">
