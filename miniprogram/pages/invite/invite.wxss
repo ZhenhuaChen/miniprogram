@@ -92,7 +92,6 @@
   border: 2rpx solid #e0e0e0;
   border-radius: 15rpx;
   padding: 30rpx;
-  margin-bottom: 20rpx;
   font-size: 32rpx;
   color: #333;
 }
@@ -101,20 +100,6 @@
   background: #5702a8;
   color: white;
   border-color: #5702a8;
-}
-
-.btn-icon {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 15rpx;
-}
-
-/* 奖励说明 */
-.reward-section {
-  background: white;
-  border-radius: 20rpx;
-  padding: 40rpx;
-  margin-bottom: 30rpx;
 }
 
 .section-title {
@@ -176,19 +161,106 @@
   width: 100%;
 }
 
-/* 底部按钮 */
-.bottom-section {
-  margin-bottom: 50rpx;
+/* 获取积分方式 */
+.earn-section {
+  width: 80vw;
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
 }
 
-.points-btn {
-  background: transparent;
-  color: #5702a8;
-  border: 2rpx solid #5702a8;
-  border-radius: 15rpx;
-  padding: 25rpx;
+.earn-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25rpx;
+}
+
+.earn-item {
+  display: flex;
+  align-items: center;
+}
+
+.earn-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  width: 60rpx;
+  text-align: center;
+}
+
+.earn-content {
+  flex: 1;
+}
+
+.earn-title {
+  display: block;
   font-size: 28rpx;
-  width: 100%;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.earn-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #5702a8;
+  font-weight: bold;
+}
+
+/* 积分记录 */
+.history-section {
+  width: 80vw;
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-content {
+  flex: 1;
+}
+
+.history-desc {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.history-date {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.history-points {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.history-points.positive {
+  color: #52c41a;
+}
+
+.history-points.negative {
+  color: #ff4d4f;
 }
 
 /* 加载状态 */

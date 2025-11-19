@@ -5,6 +5,7 @@ Page({
     userInfo: {},
     shareCount: 0,
     totalPoints: 0,
+    pointsHistory: [],
     todayShared: false,
     loading: false
   },
@@ -94,7 +95,7 @@ Page({
       totalPoints: 0,
       pointsHistory: []
     });
-    
+
     const shareData = DataManager.getStorage('shareData', {
       shareCount: 0,
       lastShareDate: '',
@@ -105,8 +106,12 @@ Page({
     const today = DataManager.getCurrentDate();
     const todayShared = shareData.lastShareDate === today;
 
+    // 只取前10条积分记录
+    const recentHistory = pointsData.pointsHistory.slice(0, 10).reverse();
+
     this.setData({
       totalPoints: pointsData.totalPoints,
+      pointsHistory: recentHistory,
       shareCount: shareData.shareCount,
       todayShared: todayShared
     });
@@ -124,12 +129,6 @@ Page({
     };
   },
 
-  // 跳转到积分中心
-  goToPoints() {
-    wx.navigateTo({
-      url: '/pages/points/points'
-    });
-  },
 
   // 页面分享配置
   onShareAppMessage() {

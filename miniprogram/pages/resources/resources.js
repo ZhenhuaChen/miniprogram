@@ -192,7 +192,7 @@ Page({
   // 跳转到积分页面
   goToPoints() {
     wx.navigateTo({
-      url: '/pages/points/points'
+      url: '/pages/invite/invite'
     });
   },
 

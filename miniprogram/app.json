@@ -13,7 +13,6 @@
         "pages/customFormulaTest/customFormulaTest",
         "pages/customFormulaList/customFormulaList",
         "pages/invite/invite",
-        "pages/points/points",
         "pages/resources/resources"
     ],
     "window": {

@@ -32,44 +32,56 @@
   <!-- 分享按钮 -->
   <view class="share-section">
     <button class="share-btn primary" open-type="share">
-      <image class="btn-icon" src="/images/share.png" mode="aspectFit"></image>
-      分享给微信好友
+      分享至微信群
     </button>
   </view>
 
-  <!-- 分享奖励说明 -->
-  <view class="reward-section">
-    <view class="section-title">分享奖励</view>
-    <view class="reward-list">
-      <view class="reward-item">
-        <view class="reward-icon">📱</view>
-        <view class="reward-content">
-          <text class="reward-title">分享给微信好友</text>
-          <text class="reward-desc">每日首次可获得20积分</text>
+  <!-- 如何获得积分 -->
+  <view class="earn-section">
+    <view class="section-title">如何获得积分？</view>
+    <view class="earn-list">
+      <view class="earn-item">
+        <view class="earn-icon">🎯</view>
+        <view class="earn-content">
+          <text class="earn-title">每日学习</text>
+          <text class="earn-desc">+5积分</text>
         </view>
       </view>
-      <view class="reward-item">
-        <view class="reward-icon">📸</view>
-        <view class="reward-content">
-          <text class="reward-title">分享到朋友圈</text>
-          <text class="reward-desc">每日首次可获得20积分</text>
+      <view class="earn-item">
+        <view class="earn-icon">👥</view>
+        <view class="earn-content">
+          <text class="earn-title">邀请好友</text>
+          <text class="earn-desc">+20积分</text>
         </view>
       </view>
-      <view class="reward-item">
-        <view class="reward-icon">💎</view>
-        <view class="reward-content">
-          <text class="reward-title">积分用途</text>
-          <text class="reward-desc">解锁高级功能和内容</text>
+      <view class="earn-item">
+        <view class="earn-icon">💎</view>
+        <view class="earn-content">
+          <text class="earn-title">积分用途</text>
+          <text class="earn-desc">资料下载</text>
         </view>
       </view>
     </view>
   </view>
 
-  <!-- 积分中心入口 -->
-  <view class="bottom-section">
-    <button class="points-btn" bindtap="goToPoints">
-      查看积分明细
-    </button>
+  <!-- 积分记录 -->
+  <view class="history-section" wx:if="{{pointsHistory.length > 0}}">
+    <view class="section-title">积分记录（最近10条）</view>
+    <view class="history-list">
+      <view
+        class="history-item"
+        wx:for="{{pointsHistory}}"
+        wx:key="index"
+      >
+        <view class="history-content">
+          <text class="history-desc">{{item.description}}</text>
+          <text class="history-date">{{item.date}}</text>
+        </view>
+        <view class="history-points {{item.points > 0 ? 'positive' : 'negative'}}">
+          {{item.points > 0 ? '+' : ''}}{{item.points}}
+        </view>
+      </view>
+    </view>
   </view>
 
   <!-- 加载状态 -->

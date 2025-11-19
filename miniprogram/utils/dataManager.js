@@ -555,29 +555,6 @@ class DataManager {
       return { success: false, message: '奖励发放失败' };
     }
   }
-  
-  // 处理章节完成奖励
-  static handleChapterCompleteReward(chapterName) {
-    try {
-      let chapterRewards = this.getStorage('chapterRewards', []);
-      
-      // 检查是否已经奖励过这个章节
-      if (chapterRewards.includes(chapterName)) {
-        return { success: false, message: '该章节已获得奖励' };
-      }
-      
-      chapterRewards.push(chapterName);
-      this.setStorage('chapterRewards', chapterRewards);
-      
-      // 给予章节完成奖励
-      this.addPoints(10, `完成章节《${chapterName}》`);
-      
-      return { success: true, points: 10, message: '恭喜完成章节！获得10积分奖励！' };
-    } catch (error) {
-      console.error('处理章节完成奖励失败:', error);
-      return { success: false, message: '奖励发放失败' };
-    }
-  }
 }
 
 module.exports = DataManager; 
