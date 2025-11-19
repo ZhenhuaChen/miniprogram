@@ -4,9 +4,9 @@
     <header userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}"></header>
     <view class="content-wrap">
       <!-- 图片功能公告 -->
-      <view class="announcement" bindtap="goToCustomFormula">
+      <view class="announcement" bindtap="goToNewFect">
         <text class="announcement-icon">📸</text>
-        <text class="announcement-text">自制公式可以上传图片啦！快去DIY你的背诵公式</text>
+        <text class="announcement-text">新增资源下载模块去找找你要的资源</text>
         <text class="announcement-arrow">→</text>
       </view>
       
@@ -57,6 +57,14 @@
   </view>
   <view class="group-408">
     <view class="cs-408-title">
+      <span>资源下载</span>
+    </view>
+    <view class="module-list">
+      <view class="module-item" bindtap="goToResources">历年真题</view>
+    </view>
+  </view>
+  <view class="group-408">
+    <view class="cs-408-title">
       <span>DIY</span>
     </view>
     <view class="module-list">
@@ -66,14 +74,6 @@
       <view class="module-item" bindtap="goSubject" data-subject="数据结构">数据结构</view>
       <view class="module-item" bindtap="goSubject" data-subject="操作系统">操作系统</view>
       <view class="module-item" bindtap="goSubject" data-subject="计算机网络">计算机网络</view> -->
-    </view>
-  </view>
-  <view class="group-408">
-    <view class="cs-408-title">
-      <span>资源下载</span>
-    </view>
-    <view class="module-list">
-      <view class="module-item" bindtap="goToResources">408历年真题</view>
     </view>
   </view>
 </scroll-view>

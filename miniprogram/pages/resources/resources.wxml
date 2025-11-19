@@ -1,19 +1,31 @@
 <view class="container">
-  <!-- 积分显示 -->
   <view class="points-header">
     <view class="points-card">
       <view>
         <text class="points-label">剩余积分：</text>
         <text class="points-number">{{totalPoints}}</text>
       </view>
-      <view class="tip-content" bindtap="goToPoints">
+      <view class="tip-content" bindtap="goToInvite">
         <text class="tip-text">查看获取积分方法→</text>
       </view>
     </view>
-    
   </view>
 
-  <!-- 资源列表 -->
+  <!-- 分类标签 -->
+  <view class="category-tabs">
+    <view
+      class="category-tab {{currentCategory === item.id ? 'active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="switchCategory"
+    >
+      <text class="tab-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 408资源 -->
+  <view wx:if="{{currentCategory === '408'}}">
   <view class="resources-section">
     <view class="section-title">408历年真题及答案</view>
     <view class="section-desc">每份资源消耗10积分，已下载的资源可免费重复查看</view>
@@ -38,6 +50,34 @@
         </view>
       </view>
     </view>
+  </view>
+  </view>
+
+  <!-- 数二资源 -->
+  <view wx:if="{{currentCategory === 'math2'}}">
+  <view class="resources-section empty-section">
+    <view class="section-title">数学二真题及答案</view>
+    <view class="empty-notice">
+      <text class="empty-icon">📚</text>
+      <text class="empty-text">暂无数据，关注后续更新</text>
+    </view>
+  </view>
+  </view>
+
+  <!-- 英语资源 -->
+  <view wx:if="{{currentCategory === 'english'}}">
+  <view class="resources-section empty-section">
+    <view class="section-title">英语真题及答案</view>
+    <view class="empty-notice">
+      <text class="empty-icon">📖</text>
+      <text class="empty-text">暂无数据，关注后续更新</text>
+    </view>
+  </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-tip">
+    <text class="tip-notice">更多资源联系开发者添加</text>
   </view>
 
   <!-- 下载确认弹窗 -->

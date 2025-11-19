@@ -3,6 +3,12 @@ const DataManager = require('../../utils/dataManager');
 Page({
   data: {
     totalPoints: 0,
+    currentCategory: '408', // 当前选中的分类
+    categories: [
+      { id: '408', name: '408' },
+      { id: 'math2', name: '数二' },
+      { id: 'english', name: '英语二' }
+    ],
     resources: [
       { id: '2009', title: '2009年408真题及答案', year: '2009', points: 10, icon: '📄', url: 'cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/408exam/2009408.pdf' },
       { id: '2010', title: '2010年408真题及答案', year: '2010', points: 10, icon: '📄', url: 'cloud://cloud1-8gd6vytq5ac1936a.636c-cloud1-8gd6vytq5ac1936a-1347245059/408exam/2010408.pdf' },
@@ -42,6 +48,14 @@ Page({
   loadData() {
     this.refreshPoints();
     this.updateDownloadStatus();
+  },
+
+  // 切换分类
+  switchCategory(e) {
+    const categoryId = e.currentTarget.dataset.id;
+    this.setData({
+      currentCategory: categoryId
+    });
   },
 
   // 刷新积分
@@ -190,7 +204,7 @@ Page({
   },
 
   // 跳转到积分页面
-  goToPoints() {
+  goToInvite() {
     wx.navigateTo({
       url: '/pages/invite/invite'
     });

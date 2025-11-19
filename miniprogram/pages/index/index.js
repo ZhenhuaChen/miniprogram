@@ -102,10 +102,9 @@ Page({
     });
   },
 
-  // 跳转到自制公式页面
-  goToCustomFormula() {
+  goToNewFect() {
     wx.navigateTo({
-      url: "/pages/customFormula/customFormula",
+      url: "/pages/resources/resources",
     });
   },
 

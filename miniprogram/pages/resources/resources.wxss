@@ -36,12 +36,48 @@
   font-weight: 500;
 }
 
+/* 分类标签 */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+}
+
+.category-tab {
+  flex: 1;
+  width: 100rpx;
+  text-align: center;
+  padding: 10rpx;
+  background: white;
+  border-radius: 15rpx;
+  border: 2rpx solid #e0e0e0;
+  transition: all 0.3s;
+}
+
+.category-tab.active {
+  background: #5702a8;
+  border-color: #5702a8;
+}
+
+.tab-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.category-tab.active .tab-text {
+  color: white;
+  font-weight: bold;
+}
+
 /* 资源列表 */
 .resources-section {
   width: 80vw;
   background: white;
   border-radius: 20rpx;
   padding: 40rpx;
+  margin-bottom: 30rpx;
 }
 
 .section-title {
@@ -133,6 +169,48 @@
   background: #f0f0f0;
   padding: 8rpx 16rpx;
   border-radius: 8rpx;
+}
+
+/* 空状态模块 */
+.empty-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 40rpx;
+  width: 100%;
+}
+
+.empty-icon {
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+}
+
+/* 底部提示 */
+.bottom-tip {
+  padding: 30rpx 20rpx;
+  text-align: center;
+}
+
+.tip-notice {
+  font-size: 24rpx;
+  color: #5702a8;
+  padding: 15rpx 30rpx;
+  background: rgba(87, 2, 168, 0.05);
+  border-radius: 8rpx;
+  display: inline-block;
 }
 
 /* 模态框 */
