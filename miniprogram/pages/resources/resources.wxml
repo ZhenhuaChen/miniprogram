@@ -1,0 +1,63 @@
+<view class="container">
+  <!-- 积分显示 -->
+  <view class="points-header">
+    <view class="points-card">
+      <view>
+        <text class="points-label">剩余积分：</text>
+        <text class="points-number">{{totalPoints}}</text>
+      </view>
+      <view class="tip-content" bindtap="goToPoints">
+        <text class="tip-text">查看获取积分方法→</text>
+      </view>
+    </view>
+    
+  </view>
+
+  <!-- 资源列表 -->
+  <view class="resources-section">
+    <view class="section-title">408历年真题及答案</view>
+    <view class="section-desc">每份资源消耗10积分，已下载的资源可免费重复查看</view>
+
+    <view class="resources-list">
+      <view
+        class="resource-item"
+        wx:for="{{resources}}"
+        wx:key="id"
+        bindtap="showDownload"
+        data-index="{{index}}"
+      >
+        <view class="resource-icon">{{item.icon}}</view>
+        <view class="resource-content">
+          <text class="resource-title">{{item.title}}</text>
+        </view>
+        <view class="resource-action">
+          <text class="resource-points" wx:if="{{!item.downloaded}}">{{item.points}}积分</text>
+          <text class="download-btn" wx:if="{{!item.downloaded && totalPoints >= item.points}}">下载</text>
+          <text class="downloaded-tag" wx:if="{{item.downloaded}}">已下载</text>
+          <text class="disabled-btn" wx:if="{{!item.downloaded && totalPoints < item.points}}">积分不足</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 下载确认弹窗 -->
+  <view class="modal-mask" wx:if="{{showDownloadModal}}" bindtap="hideDownloadModal">
+    <view class="modal-content" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">确认下载</text>
+      </view>
+      <view class="modal-body">
+        <view class="resource-preview">
+          <text class="preview-icon">{{selectedResource.icon}}</text>
+          <text class="preview-title">{{selectedResource.title}}</text>
+          <text class="preview-desc">下载后可随时查看，无需重复消耗积分</text>
+          <text class="preview-cost">需要消耗 {{selectedResource.points}} 积分</text>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="cancel-btn" bindtap="hideDownloadModal">取消</button>
+        <button class="confirm-btn" bindtap="confirmDownload">确认下载</button>
+      </view>
+    </view>
+  </view>
+</view>

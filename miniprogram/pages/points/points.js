@@ -4,32 +4,7 @@ Page({
   data: {
     totalPoints: 0,
     pointsHistory: [],
-    loading: false,
-    showExchangeModal: false,
-    selectedReward: null,
-    rewards: [
-      {
-        id: 'vip_formulas',
-        title: '高级公式解锁',
-        desc: '解锁所有高级数学公式',
-        points: 100,
-        icon: '📚'
-      },
-      {
-        id: 'custom_report',
-        title: '个性化学习报告',
-        desc: '生成详细的学习分析报告',
-        points: 50,
-        icon: '📊'
-      },
-      {
-        id: 'remove_ads',
-        title: '去除广告',
-        desc: '享受无广告的学习体验',
-        points: 200,
-        icon: '🚫'
-      }
-    ]
+    loading: false
   },
 
   onLoad: function (options) {
@@ -69,71 +44,6 @@ Page({
     });
   },
 
-  // 显示兑换模态框
-  showExchange(e) {
-    const index = e.currentTarget.dataset.index;
-    const reward = this.data.rewards[index];
-    
-    if (this.data.totalPoints < reward.points) {
-      wx.showToast({
-        title: '积分不足',
-        icon: 'none'
-      });
-      return;
-    }
-    
-    this.setData({
-      selectedReward: reward,
-      showExchangeModal: true
-    });
-  },
-
-  // 隐藏兑换模态框
-  hideExchangeModal() {
-    this.setData({
-      showExchangeModal: false,
-      selectedReward: null
-    });
-  },
-
-  // 确认兑换
-  confirmExchange() {
-    const reward = this.data.selectedReward;
-    
-    if (this.data.totalPoints < reward.points) {
-      wx.showToast({
-        title: '积分不足',
-        icon: 'none'
-      });
-      return;
-    }
-    
-    // 扣除积分
-    DataManager.addPoints(-reward.points, `兑换${reward.title}`);
-    
-    // 记录兑换
-    this.recordExchange(reward);
-    
-    this.hideExchangeModal();
-    this.refreshPointsData();
-    
-    wx.showToast({
-      title: '兑换成功！',
-      icon: 'success'
-    });
-  },
-
-  // 记录兑换历史
-  recordExchange(reward) {
-    let exchanges = DataManager.getStorage('exchanges', []);
-    exchanges.push({
-      id: reward.id,
-      title: reward.title,
-      points: reward.points,
-      date: new Date().toISOString()
-    });
-    DataManager.setStorage('exchanges', exchanges);
-  },
 
   // 格式化时间
   formatTime(dateString) {

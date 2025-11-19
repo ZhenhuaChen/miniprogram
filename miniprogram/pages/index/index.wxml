@@ -68,6 +68,14 @@
       <view class="module-item" bindtap="goSubject" data-subject="计算机网络">计算机网络</view> -->
     </view>
   </view>
+  <view class="group-408">
+    <view class="cs-408-title">
+      <span>资源下载</span>
+    </view>
+    <view class="module-list">
+      <view class="module-item" bindtap="goToResources">408历年真题</view>
+    </view>
+  </view>
 </scroll-view>
 
 <!-- </view> -->

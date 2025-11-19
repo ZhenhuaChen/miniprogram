@@ -16,6 +16,7 @@
 }
 
 .tab-item {
+  width: 100rpx;
   flex: 1;
   text-align: center;
   padding: 6rpx 20rpx;

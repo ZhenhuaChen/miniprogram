@@ -13,7 +13,8 @@
         "pages/customFormulaTest/customFormulaTest",
         "pages/customFormulaList/customFormulaList",
         "pages/invite/invite",
-        "pages/points/points"
+        "pages/points/points",
+        "pages/resources/resources"
     ],
     "window": {
         "backgroundColor": "#e6eef5",

@@ -7,31 +7,6 @@
     </view>
   </view>
 
-  <!-- 积分商城 -->
-  <view class="rewards-section">
-    <view class="section-title">积分商城</view>
-    <view class="rewards-list">
-      <view 
-        class="reward-item" 
-        wx:for="{{rewards}}" 
-        wx:key="id"
-        bindtap="showExchange"
-        data-index="{{index}}"
-      >
-        <view class="reward-icon">{{item.icon}}</view>
-        <view class="reward-content">
-          <text class="reward-title">{{item.title}}</text>
-          <text class="reward-desc">{{item.desc}}</text>
-        </view>
-        <view class="reward-points">
-          <text class="points-cost">{{item.points}}积分</text>
-          <text class="exchange-btn" wx:if="{{totalPoints >= item.points}}">兑换</text>
-          <text class="disabled-btn" wx:else>积分不足</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
   <!-- 获取积分方式 -->
   <view class="earn-section">
     <view class="section-title">如何获得积分？</view>
@@ -84,27 +59,6 @@
   <view class="empty-state" wx:if="{{pointsHistory.length === 0 && !loading}}">
     <text class="empty-text">暂无积分记录</text>
     <text class="empty-tip">开始学习或邀请好友来获得积分吧！</text>
-  </view>
-
-  <!-- 兑换确认模态框 -->
-  <view class="modal-mask" wx:if="{{showExchangeModal}}" bindtap="hideExchangeModal">
-    <view class="modal-content" catchtap="">
-      <view class="modal-header">
-        <text class="modal-title">确认兑换</text>
-      </view>
-      <view class="modal-body">
-        <view class="reward-preview">
-          <text class="preview-icon">{{selectedReward.icon}}</text>
-          <text class="preview-title">{{selectedReward.title}}</text>
-          <text class="preview-desc">{{selectedReward.desc}}</text>
-          <text class="preview-cost">需要消耗 {{selectedReward.points}} 积分</text>
-        </view>
-      </view>
-      <view class="modal-footer">
-        <button class="cancel-btn" bindtap="hideExchangeModal">取消</button>
-        <button class="confirm-btn" bindtap="confirmExchange">确认兑换</button>
-      </view>
-    </view>
   </view>
 
   <!-- 加载状态 -->

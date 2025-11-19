@@ -116,6 +116,13 @@ Page({
     });
   },
 
+  // 跳转到资源下载页面
+  goToResources() {
+    wx.navigateTo({
+      url: "/pages/resources/resources",
+    });
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

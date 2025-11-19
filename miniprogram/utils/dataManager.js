@@ -414,6 +414,75 @@ class DataManager {
     const pointsData = this.getPointsData();
     return pointsData.totalPoints >= requiredPoints;
   }
+
+  // 扣除积分（用于资源下载等）
+  static deductPoints(points, description = '消耗积分') {
+    try {
+      let pointsData = this.getStorage('pointsData', {
+        totalPoints: 0,
+        pointsHistory: []
+      });
+
+      if (pointsData.totalPoints < points) {
+        return { success: false, message: '积分不足' };
+      }
+
+      pointsData.totalPoints -= points;
+      pointsData.pointsHistory.push({
+        points: -points,
+        description: description,
+        date: new Date().toISOString(),
+        timestamp: Date.now()
+      });
+
+      // 只保留最近100条记录
+      if (pointsData.pointsHistory.length > 100) {
+        pointsData.pointsHistory = pointsData.pointsHistory.slice(-100);
+      }
+
+      this.setStorage('pointsData', pointsData);
+      return { success: true, remainPoints: pointsData.totalPoints };
+    } catch (error) {
+      console.error('扣除积分失败:', error);
+      return { success: false, message: '操作失败' };
+    }
+  }
+
+  // 检查资源是否已下载
+  static isResourceDownloaded(resourceId) {
+    const downloads = this.getStorage('downloadedResources', []);
+    return downloads.includes(resourceId);
+  }
+
+  // 记录资源下载
+  static recordResourceDownload(resourceId, resourceTitle) {
+    try {
+      let downloads = this.getStorage('downloadedResources', []);
+      if (!downloads.includes(resourceId)) {
+        downloads.push(resourceId);
+        this.setStorage('downloadedResources', downloads);
+      }
+
+      let downloadHistory = this.getStorage('downloadHistory', []);
+      downloadHistory.push({
+        resourceId: resourceId,
+        resourceTitle: resourceTitle,
+        date: new Date().toISOString(),
+        timestamp: Date.now()
+      });
+
+      // 只保留最近50条记录
+      if (downloadHistory.length > 50) {
+        downloadHistory = downloadHistory.slice(-50);
+      }
+
+      this.setStorage('downloadHistory', downloadHistory);
+      return true;
+    } catch (error) {
+      console.error('记录下载失败:', error);
+      return false;
+    }
+  }
   
   // ========== 分享系统相关方法 ==========
   
